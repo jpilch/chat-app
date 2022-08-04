@@ -23,8 +23,8 @@ const io = new Server<ServerToClientEvents, ClientToServerEvents>(server, {
 });
 
 io.on("connection", socket => {
-    console.log("User has connected")
-})
+    console.log("User has connected");
+});
 
 server.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
