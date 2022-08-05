@@ -1,17 +1,17 @@
 import http from "http";
 
-import { app } from './app';
-import { PORT } from './common'
+import { app } from "./app";
+import { PORT } from "./common";
 
 const server = http.createServer(app);
 
-import { attachSocketIoServer } from './socket-io'
+import { attachSocketIoServer } from "./socket-io";
 
 attachSocketIoServer(server)
     .then(() => {
         server.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}`);
         });
-    }).catch(err => {
-        console.log('An error occured');
+    }).catch(_err => {
+        console.log("An error occured");
     });

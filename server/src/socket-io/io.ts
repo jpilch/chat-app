@@ -1,9 +1,9 @@
 import { Server, Socket } from "socket.io";
 import { ServerToClientEvents, ClientToServerEvents } from "./io.types";
 import { corsConfig } from "./io.config";
-import { registerChatHandlers } from './chat.handlers';
+import { registerChatHandlers } from "./chat.handlers";
 
-import http from 'http';
+import http from "http";
 
 function onConnection(socket: Socket) {
     console.log("User has connected", socket.id);
