@@ -2,13 +2,13 @@
     "name": "server",
     "version": "1.0.0",
     "description": "backend for a chat application",
-    "main": "src/index.js",
+    "main": "src/main.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "tsc": "tsc",
         "eslint": "eslint",
         "lint": "eslint --ext .ts ./src",
-        "dev": "ts-node-dev ./src/index.ts"
+        "dev": "ts-node-dev ./src/main.ts"
     },
     "author": "",
     "license": "ISC",
