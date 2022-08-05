@@ -1,4 +1,4 @@
-import styles from "./App.module.css"
+import styles from "./App.module.css";
 import { Outlet } from "react-router-dom";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
             <p>app</p>
             <Outlet />
         </div>
-    )
+    );
 }
 
 export default App;

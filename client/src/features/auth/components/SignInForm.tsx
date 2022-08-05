@@ -1,5 +1,5 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
 
 function SignInForm() {
     const { register, handleSubmit } = useForm();
@@ -17,7 +17,7 @@ function SignInForm() {
                 <button type='submit'>Login</button>
             </form>
         </section>
-    )
+    );
 }
 
 export default SignInForm;

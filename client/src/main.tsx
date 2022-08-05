@@ -1,12 +1,12 @@
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import App from './pages/app/App';
-import Chat from './pages/chat/Chat';
-import NotFound from './pages/not-found/NotFound';
-import SignInForm from './features/auth/components/SignInForm';
+import App from "./pages/app/App";
+import Chat from "./pages/chat/Chat";
+import NotFound from "./pages/not-found/NotFound";
+import SignInForm from "./features/auth/components/SignInForm";
 
-import './styles/index.css'
+import "./styles/index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,4 +22,4 @@ root.render(
             </Route>
         </Routes>
     </BrowserRouter>
-)
+);
