@@ -1,7 +1,7 @@
 import http from "http";
 
 import { app } from './app';
-import { PORT } from './common/config'
+import { PORT } from './common'
 
 const server = http.createServer(app);
 
