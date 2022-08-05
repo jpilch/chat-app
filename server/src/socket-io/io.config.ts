@@ -1,4 +1,4 @@
-import { CLIENT_URL } from "./env";
+import { CLIENT_URL } from '../common/config'
 
 type CorsConfig = {
     origin: string;
