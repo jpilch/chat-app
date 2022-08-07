@@ -9,6 +9,7 @@ import SignInForm from "./features/auth/components/SignInForm";
 import { store } from "./features/app/store";
 
 import "./styles/index.css";
+import "./styles/normalize.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
