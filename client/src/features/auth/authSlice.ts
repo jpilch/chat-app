@@ -8,7 +8,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     username: "",
-}
+};
 
 const authSlice = createSlice({
     name: "auth",

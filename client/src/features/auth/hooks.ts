@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom"
-import { useAppSelector } from '../app/hooks';
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
 import { selectUsername } from "./authSlice";
 
 export const useLoginRequired = () => {
@@ -9,7 +9,7 @@ export const useLoginRequired = () => {
 
     useEffect(() => {
         if (!username) {
-            navigate('/sign-up');
+            navigate("/sign-up");
         }
-    }, [username])
-}
+    }, [username]);
+};
