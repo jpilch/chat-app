@@ -1,0 +1,28 @@
+@use "../../../styles/abstracts/mixins";
+@use "../../../styles/abstracts/variables";
+
+.trademark {
+    @include mixins.flex-col;
+
+    &__logo {
+        @include mixins.flex-row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__img {
+        height: 100px;
+        width: auto;
+    }
+
+    &__name {
+        font-weight: 900;
+        font-size: 3rem;
+        color: variables.$base-color;
+    }
+
+    &__heading {
+        font-size: 1.3rem;
+    }
+}

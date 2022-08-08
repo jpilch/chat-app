@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useLoginRequired } from '../../features/auth/hooks';
+import { useLoginRequired } from "../../auth/hooks";
 
 function App() {
     useLoginRequired();
