@@ -3,11 +3,16 @@
 
 .trademark {
     @include m.flex-col;
+    @include m.full-space;
+    @include m.flex-center;
+
+    padding: map-get($map: v.$spaces, $key: "medium");
 
     &__logo {
         @include m.flex-row;
         justify-content: flex-start;
         align-items: center;
+        align-self: flex-start;
         gap: 1rem;
     }
 
@@ -18,11 +23,12 @@
 
     &__name {
         font-weight: 900;
-        font-size: 3rem;
+        font-size: 4rem;
         color: v.$base-color;
     }
 
     &__heading {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        align-self: flex-start;
     }
 }
