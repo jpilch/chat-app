@@ -1,0 +1,18 @@
+@use '../../../styles/abstracts/mixins' as m;
+@use '/src/styles/abstracts/variables' as v;
+
+.sign-up {
+    @include m.flex-row;
+
+    height: 100vh;
+
+    padding: map-get($map: v.$spaces, $key: "extra-large");
+
+    &__logo {
+        flex: 1;
+    }
+
+    &__form {
+        flex: 1;
+    }
+}

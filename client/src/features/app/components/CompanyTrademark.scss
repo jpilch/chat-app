@@ -1,11 +1,11 @@
-@use "../../../styles/abstracts/mixins";
-@use "../../../styles/abstracts/variables";
+@use "../../../styles/abstracts/mixins" as m;
+@use "../../../styles/abstracts/variables" as v;
 
 .trademark {
-    @include mixins.flex-col;
+    @include m.flex-col;
 
     &__logo {
-        @include mixins.flex-row;
+        @include m.flex-row;
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;
@@ -19,7 +19,7 @@
     &__name {
         font-weight: 900;
         font-size: 3rem;
-        color: variables.$base-color;
+        color: v.$base-color;
     }
 
     &__heading {
