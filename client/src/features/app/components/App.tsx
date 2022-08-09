@@ -1,3 +1,5 @@
+import './App.scss'
+
 import { Outlet } from "react-router-dom";
 import { useLoginRequired } from "../../auth/hooks";
 

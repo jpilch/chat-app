@@ -1,4 +1,5 @@
-import React from "react";
+import './SignUp.scss'
+
 import CompanyTrademark from "../../app/components/CompanyTrademark";
 import SignUpForm from "./SignUpForm";
 
