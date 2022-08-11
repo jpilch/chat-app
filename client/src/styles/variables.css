@@ -1,0 +1,9 @@
+:root {
+    --base-color: #5271FF;
+    --highlight-color: #00E4E3;
+    --secondary-color: whitesmoke;
+
+    /* grids */
+    --column-num-lg: 16;
+    --row-num-lg: 10;
+}

@@ -1,0 +1,25 @@
+.trademark {
+    height: 100%;
+    width: 100%;
+}
+
+.trademark__logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4rem;
+}
+
+.trademark__name {
+    font-size: 5rem;
+    color: var(--base-color);
+}
+
+.trademark__img {
+    height: auto;
+    width: 100px;
+}
+
+.trademark__heading {
+    font-size: 1.3rem;
+}
