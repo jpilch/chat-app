@@ -2,6 +2,8 @@
     --base-color: #5271FF;
     --highlight-color: #00E4E3;
     --secondary-color: whitesmoke;
+    --base-color-hover: #4265ff;
+    --highlight-color-hover: #00d8d8;
 
     /* grids */
     --column-num-lg: 16;
