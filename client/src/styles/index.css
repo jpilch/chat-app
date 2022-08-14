@@ -15,5 +15,6 @@ a {
 
 html,
 body {
+    background-color: var(--bg-color-primary);
     font-family: 'Roboto', sans-serif;
 }

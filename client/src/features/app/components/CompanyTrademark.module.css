@@ -12,7 +12,7 @@
 
 .trademark__name {
     font-size: 5rem;
-    color: var(--base-color);
+    color: var(--text-color-primary);
 }
 
 .trademark__img {

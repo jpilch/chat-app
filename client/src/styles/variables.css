@@ -1,4 +1,12 @@
 :root {
+    --bg-color-primary: #F0F5F2;
+    --bg-color-secondary: #fff;
+
+    --text-color-primary: #007F5F;
+    --text-color-primary-hover: #006b50;
+    --text-color-highlight: #55A630;
+    --text-color-highlight-hover: #468f24;
+
     --base-color: #5271FF;
     --highlight-color: #00E4E3;
     --secondary-color: whitesmoke;
