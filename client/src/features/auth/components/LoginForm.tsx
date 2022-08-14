@@ -14,12 +14,14 @@ function LoginForm() {
                     className={styles.auth__input}
                     id='email'
                     placeholder='Email address'
+                    autoComplete='off'
                 />
                 <input
                     type="password"
                     className={styles.auth__input}
                     id='password'
                     placeholder='Password'
+                    autoComplete='off'
                 />
                 <button
                     className={`${styles.auth__button} ${styles["auth__button--submit"]}`}
