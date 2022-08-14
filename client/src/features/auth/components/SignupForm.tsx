@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { LOGIN_URL } from '../constants';
+import { LOGIN_URL, QUICKJOIN_URL } from '../constants';
 
 import styles from './AuthForm.module.css';
 
@@ -54,7 +54,10 @@ function SignUpForm() {
             </form>
             <p className={styles.auth__skip_paragraph}>
                 In a hurry? Try out {" "}
-                <span className={styles.auth__skip_link}>
+                <span
+                    className={styles.auth__skip_link}
+                    onClick={() => navigate(QUICKJOIN_URL)}
+                >
                     Quick Chat
                 </span>
             </p>

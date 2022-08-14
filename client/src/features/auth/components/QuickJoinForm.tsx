@@ -1,9 +1,9 @@
 import styles from './AuthForm.module.css';
+
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_URL } from '../constants';
 
-import { SIGNUP_URL, QUICKJOIN_URL } from '../constants';
-
-function LoginForm() {
+function QuickJoinForm() {
     const navigate = useNavigate();
 
     return (
@@ -12,43 +12,35 @@ function LoginForm() {
                 <input
                     type="text"
                     className={styles.auth__input}
-                    id='email'
-                    placeholder='Email address'
+                    id='username'
+                    placeholder='Username'
                     autoComplete='off'
                 />
                 <input
-                    type="password"
+                    type="text"
                     className={styles.auth__input}
-                    id='password'
-                    placeholder='Password'
+                    id='room-id'
+                    placeholder='Room ID'
                     autoComplete='off'
                 />
                 <button
                     className={`${styles.auth__button} ${styles["auth__button--submit"]}`}
                     type='submit'
                 >
-                    Login
-                </button>
-                <div className={styles.auth__rule} />
-                <button
-                    className={`${styles.auth__button} ${styles["auth__button--redirect"]}`}
-                    type="button"
-                    onClick={() => navigate(SIGNUP_URL)}
-                >
-                    Sign up
+                    Join
                 </button>
             </form>
             <p className={styles.auth__skip_paragraph}>
-                In a hurry? Try out {" "}
+                Have an account? {" "}
                 <span
                     className={styles.auth__skip_link}
-                    onClick={() => navigate(QUICKJOIN_URL)}
+                    onClick={() => navigate(LOGIN_URL)}
                 >
-                    Quick Chat
+                    Login
                 </span>
             </p>
         </>
-    );
+    )
 }
 
-export default LoginForm;
+export default QuickJoinForm
