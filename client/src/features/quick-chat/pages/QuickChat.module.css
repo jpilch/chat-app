@@ -13,9 +13,9 @@
 }
 
 .chat__sidebar {
-    grid-column: 2 / span 4;
+    grid-column: 2 / span 3;
 }
 
 .chat__window {
-    grid-column: 7 / span 13;
+    grid-column: 6 / span 14;
 }

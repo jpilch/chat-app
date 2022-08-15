@@ -1,0 +1,7 @@
+.window {
+    background-color: #fff;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--light-box-shadow);
+    padding: 1rem;
+}

@@ -1,8 +1,10 @@
-import React from 'react'
+import styles from './QuickChatWindow.module.css';
 
 function QuickChatWindow() {
     return (
-        <div>QuickChatWindow</div>
+        <div className={styles.window}>
+
+        </div>
     )
 }
 

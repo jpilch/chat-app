@@ -5,7 +5,7 @@ import { useAppSelector } from '../../app/hooks'
 import { selectUsername } from '../../auth/authSlice'
 import { selectRoomId } from '../state/quickChatSlice'
 
-import QuickChatMembers from '../components/QuickChatMembers'
+import QuickChatParticipants from '../components/QuickChatParticipants'
 import QuickChatWindow from '../components/QuickChatWindow'
 
 function QuickChat() {
@@ -15,7 +15,7 @@ function QuickChat() {
     return (
         <main className={styles.chat}>
             <section className={styles.chat__sidebar}>
-                <QuickChatMembers />
+                <QuickChatParticipants />
             </section>
             <section className={styles.chat__window}>
                 <QuickChatWindow />

@@ -1,0 +1,22 @@
+.participant {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.participant:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.participant__img {
+    max-height: 40px;
+    width: auto;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.participant__username {}

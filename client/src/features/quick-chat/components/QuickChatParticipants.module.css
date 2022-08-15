@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: #fff;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--light-box-shadow);
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__name {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.sidebar__search {
+    font-size: 1rem;
+    display: block;
+    padding: 0.7rem;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    border: var(--light-border);
+}
+
+.sidebar__search::placeholder {
+    opacity: 0.7;
+}
+
+.sidebar__search:focus {
+    outline: 1px solid var(--text-color-highlight);
+    caret-color: var(--text-color-highlight);
+}
+
+.sidebar__search:focus::placeholder {
+    opacity: 0.3;
+}
+
+.sidebar__entries {
+    overflow-y: scroll;
+
+    flex: 1
+}
