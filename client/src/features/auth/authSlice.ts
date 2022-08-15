@@ -14,13 +14,13 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        setUsername: (state, action: PayloadAction<string>) => {
+        chooseUsername: (state, action: PayloadAction<string>) => {
             state.username = action.payload;
         }
     }
 });
 
-export const { setUsername } = authSlice.actions;
+export const { chooseUsername } = authSlice.actions;
 
 export const selectUsername = (state: RootState) => state.auth.username;
 

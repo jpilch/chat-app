@@ -16,13 +16,13 @@ const quickChatSlice = createSlice({
     name: 'quickChat',
     initialState,
     reducers: {
-        setRoomId: (state, action: PayloadAction<string>) => {
+        chooseRoomId: (state, action: PayloadAction<string>) => {
             state.roomId = action.payload;
         }
     }
 })
 
-export const { setRoomId } = quickChatSlice.actions;
+export const { chooseRoomId } = quickChatSlice.actions;
 
 export default quickChatSlice.reducer;
 
