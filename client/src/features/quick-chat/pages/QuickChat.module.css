@@ -1,0 +1,21 @@
+.chat {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+}
+
+
+.chat__sidebar,
+.chat__window {
+    grid-row: 2 / span 18;
+}
+
+.chat__sidebar {
+    grid-column: 2 / span 4;
+}
+
+.chat__window {
+    grid-column: 7 / span 13;
+}

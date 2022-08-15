@@ -8,6 +8,7 @@ import { chooseUsername } from '../authSlice';
 import { chooseRoomId } from '../../quick-chat/state/quickChatSlice';
 
 import { LOGIN_URL } from '../constants';
+import { QUICKCHAT_URL } from '../../quick-chat/constants';
 
 function QuickJoinForm() {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ function QuickJoinForm() {
         dispatch(chooseRoomId(roomId));
         setUsername('');
         setRoomId('');
+        navigate(QUICKCHAT_URL);
     }
 
     const [username, setUsername] = useState<string>('');

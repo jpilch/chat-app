@@ -7,6 +7,7 @@ import { store } from "./features/app/store";
 import App from "./features/app/components/App";
 import NotFound from "./features/app/components/NotFound";
 import Auth from "./features/auth/pages/Auth";
+import QuickChat from "./features/quick-chat/pages/QuickChat";
 
 import "./styles/index.css";
 import "./styles/variables.css";
@@ -20,6 +21,7 @@ root.render(
                     <Route path="/sign-up" element={<Auth />} />
                     <Route path="/login" element={<Auth />} />
                     <Route path="/quick-join" element={<Auth />} />
+                    <Route path="/quick-chat" element={<QuickChat />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>
