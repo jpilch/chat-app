@@ -2,11 +2,13 @@
     background-color: #fff;
     height: 100%;
     border-radius: 1rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     box-shadow: var(--light-box-shadow);
-    padding: 2rem 1rem;
     gap: 1.5rem;
     display: flex;
     flex-direction: column;
+    padding-top: 1rem;
 }
 
 .sidebar__name {
@@ -18,9 +20,9 @@
     font-size: 1rem;
     display: block;
     padding: 0.7rem;
-    margin-left: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 2rem;
     border: none;
+    margin: 0 1rem;
     border: var(--light-border);
 }
 
@@ -38,7 +40,7 @@
 }
 
 .sidebar__entries {
+    border-top: 1px solid rgba(221, 221, 221, 0.7);
     overflow-y: scroll;
-
-    flex: 1
+    flex: 1;
 }
