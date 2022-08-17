@@ -1,22 +1,11 @@
 import { useState } from 'react';
-import { QuickMessage } from '../types';
 import { useAppSelector } from '../../app/hooks';
 
 import styles from './QuickChatWindow.module.css';
 import { selectRoomId } from '../state/quickChatSlice';
 
-function QuickChatMessage({ message }: { message: QuickMessage }) {
-    return (
-        <div className="quick-message">
-            <p className="message__content">
-                <span className="message__author">
-                    {message.author}: {" "}
-                </span>
-                {message.content}
-            </p>
-        </div>
-    )
-}
+import QuickChatMessage from './QuickChatMessage';
+import { QuickMessage } from '../types';
 
 function QuickChatWindow() {
     const roomId = useAppSelector(selectRoomId);
@@ -24,8 +13,8 @@ function QuickChatWindow() {
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<QuickMessage[]>([
         { author: 'user 1', content: 'Hi all!' },
-        { author: 'user 1', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!' },
-        { author: 'user 1', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.' }
+        { author: 'user 2', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!' },
+        { author: 'user 3', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.' }
     ]);
 
 
