@@ -1,0 +1,25 @@
+.message {
+    font-size: larger;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.message__author {
+    min-width: 5rem;
+    align-self: flex-end;
+    padding-bottom: 1rem;
+}
+
+.message__content {
+    border-radius: 0.5rem;
+    background-color: #ddd;
+    padding: 1rem;
+    flex-grow: 0;
+}
+
+.message__content--current {
+    background-color: var(--text-color-primary);
+    color: #fff;
+}

@@ -7,6 +7,7 @@
     box-shadow: var(--light-box-shadow);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .window__info {
@@ -18,7 +19,9 @@
 }
 
 .window__messages {
+    overflow-y: scroll;
     flex: 1;
+    padding: 1rem 1rem 0;
 }
 
 .window__send {

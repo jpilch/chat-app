@@ -1,12 +1,37 @@
+import styles from './QuickChatMessage.module.css'
+
 import { QuickMessage } from '../types';
 
-function QuickChatMessage({ message }: { message: QuickMessage }) {
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectUsername } from '../../auth/authSlice';
+import { useEffect, useRef } from 'react';
+
+function QuickChatMessage({
+    message,
+    byCurrentUser,
+    last
+}: {
+    message: QuickMessage,
+    byCurrentUser: boolean,
+    last: boolean
+}) {
+    const dispatch = useAppDispatch();
+    const messageRef = useRef<HTMLDivElement>(null)
+
+    let author: string = byCurrentUser
+        ? 'You'
+        : message.author;
+
+    let contentClass: string = byCurrentUser
+        ? `${styles.message__content} ${styles['message__content--current']}`
+        : styles.message__content;
+
     return (
-        <div className="quick-message">
-            <p className="message__content">
-                <span className="message__author">
-                    {message.author}: {" "}
-                </span>
+        <div className={styles.message}>
+            <p className={styles.message__author}>
+                {author}:
+            </p>
+            <p className={contentClass}>
                 {message.content}
             </p>
         </div>
