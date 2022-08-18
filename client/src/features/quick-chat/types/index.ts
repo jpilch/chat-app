@@ -1,4 +1,2 @@
-export interface QuickMessage {
-    author: string;
-    content: string;
-}
+export * from './events';
+export * from './QuickMessage'

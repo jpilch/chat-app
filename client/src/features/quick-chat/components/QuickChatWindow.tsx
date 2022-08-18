@@ -1,25 +1,37 @@
-import { useRef, useState } from 'react';
-import { useAppSelector } from '../../app/hooks';
-
 import styles from './QuickChatWindow.module.css';
-import { selectRoomId } from '../state/quickChatSlice';
+
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+
+import _ from 'lodash';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useSocket } from '../../chat/hooks';
+
+import { handleIncomingMessage, selectMessages, selectRoomId } from '../state/quickChatSlice';
+import { selectUsername } from '../../auth/authSlice';
+
+import { QuickMessage, SEND_MESSAGE_EVENT } from '../types';
 
 import QuickChatMessage from './QuickChatMessage';
-import { QuickMessage } from '../types';
-import { selectUsername } from '../../auth/authSlice';
-import { useLayoutEffect } from 'react';
 
-function QuickChatWindow() {
-    const roomId = useAppSelector(selectRoomId);
-    const username = useAppSelector(selectUsername);
-    const bottomRef = useRef<HTMLDivElement>(null);
+function QuickChatWindow(): JSX.Element {
+    const dispatch = useAppDispatch();
 
     const [message, setMessage] = useState<string>("");
-    const [messages, setMessages] = useState<QuickMessage[]>([
-        { author: 'user 1', content: 'Hi all!' },
-        { author: 'user 2', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!' },
-        { author: 'user 3', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur repudiandae eos ut, esse repellendus maxime odio voluptas. Atque nesciunt aliquid voluptatibus dolorem corrupti saepe, animi quae sunt illum iste. Quam unde dignissimos placeat omnis assumenda quo saepe harum commodi excepturi accusantium iste, reiciendis nesciunt veniam ' }
-    ]);
+
+    const roomId = useAppSelector(selectRoomId);
+    const username = useAppSelector(selectUsername);
+    const messages = useAppSelector(selectMessages);
+
+    const bottomRef = useRef<HTMLDivElement>(null);
+
+    const socket = useSocket();
+
+    useEffect(() => {
+        socket.on(SEND_MESSAGE_EVENT, (data: QuickMessage) => {
+            dispatch(handleIncomingMessage(data))
+        })
+    }, [])
 
     useLayoutEffect(() => {
         bottomRef.current!.scrollIntoView({ behavior: 'smooth' })
@@ -35,8 +47,7 @@ function QuickChatWindow() {
                     <QuickChatMessage
                         message={message}
                         byCurrentUser={username === message.author}
-                        last={index === messages.length - 1}
-                        key={message.content}
+                        key={_.uniqueId(message.author)}
                     />
                 ))}
                 <div className="last" ref={bottomRef}></div>
@@ -52,9 +63,7 @@ function QuickChatWindow() {
                 <button
                     className={`${styles.window__button} ${styles['window__button--submit']}`}
                     onClick={() => {
-                        setMessages(messages => (
-                            [...messages, { author: username, content: message }]
-                        ));
+                        socket.emit(SEND_MESSAGE_EVENT, { author: username, content: message, roomId });
                         setMessage('');
                     }}
                 >
