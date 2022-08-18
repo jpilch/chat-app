@@ -5,7 +5,7 @@ import { PORT } from "./common";
 
 const server = http.createServer(app);
 
-import { attachSocketIoServer } from "./socket-io";
+import { attachSocketIoServer } from "./websocket";
 
 attachSocketIoServer(server)
     .then(() => {
