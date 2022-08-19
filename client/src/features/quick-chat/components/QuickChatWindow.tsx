@@ -1,15 +1,15 @@
 import styles from "./QuickChatWindow.module.css";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import classNames from "classnames";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useSocket } from "../../chat/hooks";
 
-import { handleIncomingMessage, selectRoomId } from "../state/quickChatSlice";
+import { addParticipant, handleIncomingMessage, selectRoomId } from "../state/quickChatSlice";
 
-import { QuickMessage, SEND_MESSAGE_EVENT } from "../types";
+import { QuickMessage, SEND_MESSAGE_EVENT, USER_JOINED_EVENT } from "../types";
 
 import QuickChatMessages from "./QuickChatMessages";
 import { selectUsername } from "../../auth/authSlice";
@@ -28,6 +28,9 @@ function QuickChatWindow(): JSX.Element {
         socket.on(SEND_MESSAGE_EVENT, (data: QuickMessage) => {
             dispatch(handleIncomingMessage(data));
         });
+        socket.on(USER_JOINED_EVENT, ({ username }: { username: string }) => {
+            dispatch(addParticipant(username));
+        })
     }, []);
 
     return (
@@ -40,7 +43,7 @@ function QuickChatWindow(): JSX.Element {
             </div >
             <form
                 className={styles.window__send}
-                onSubmit={(e) => {
+                onSubmit={(e: FormEvent) => {
                     e.preventDefault();
                     socket.emit(SEND_MESSAGE_EVENT, { author: username, content: message, roomId });
                     setMessage("");

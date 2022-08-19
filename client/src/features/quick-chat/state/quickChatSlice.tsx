@@ -34,11 +34,14 @@ const quickChatSlice = createSlice({
         },
         handleIncomingMessage: (state, action: PayloadAction<QuickMessage>) => {
             state.messages.push(action.payload);
+        },
+        addParticipant: (state, action: PayloadAction<string>) => {
+            state.participants.push(action.payload);
         }
     }
 });
 
-export const { chooseRoomId, handleIncomingMessage } = quickChatSlice.actions;
+export const { chooseRoomId, handleIncomingMessage, addParticipant } = quickChatSlice.actions;
 
 export default quickChatSlice.reducer;
 
