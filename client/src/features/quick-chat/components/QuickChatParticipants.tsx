@@ -4,22 +4,14 @@ import QuickChatParticipant from "./QuickChatParticipant";
 
 import { useAppSelector } from "../../app/hooks";
 import { selectUsername } from "../../auth/authSlice";
-
-const mockParticipants: string[] = [
-    "user 1",
-    "user 2",
-    "user 3",
-    "user 4",
-    "user 5",
-    "user 6",
-    "user 7",
-];
+import { selectParticipants } from "../state/quickChatSlice";
 
 function QuickChatParticipants() {
 
     const username = useAppSelector(selectUsername);
+    let participants = useAppSelector(selectParticipants);
 
-    const participants = mockParticipants.map(name => {
+    participants = participants.map(name => {
         return name === username ? name + " (You)" : name;
     });
 
