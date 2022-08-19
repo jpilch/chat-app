@@ -1,9 +1,9 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from "react";
 import uniqueId from "lodash/uniqueId";
 import QuickChatMessage from "./QuickChatMessage";
-import { useAppSelector } from '../../app/hooks';
-import { selectUsername } from '../../auth/authSlice';
-import { selectMessages } from '../state/quickChatSlice';
+import { useAppSelector } from "../../app/hooks";
+import { selectUsername } from "../../auth/authSlice";
+import { selectMessages } from "../state/quickChatSlice";
 
 function QuickChatMessages() {
     const username = useAppSelector(selectUsername);
@@ -27,7 +27,7 @@ function QuickChatMessages() {
             ))}
             <div ref={bottomRef}></div>
         </>
-    )
+    );
 }
 
-export default QuickChatMessages
+export default QuickChatMessages;

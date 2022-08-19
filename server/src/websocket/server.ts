@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "./types/events";
+import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData, USER_JOINED_EVENT } from "./types/events";
 import { SEND_MESSAGE_EVENT, QUICKCHAT_JOIN_EVENT } from "./types/events";
 import { corsConfig } from "./config";
 
@@ -16,6 +16,7 @@ export async function attachSocketIoServer(httpServer: http.Server) {
         socket.on(QUICKCHAT_JOIN_EVENT, (data) => {
             socket.join(data.roomId);
             socket.join(`${data.username}__${data.roomId}`);
+            io.to(data.roomId).emit(USER_JOINED_EVENT, { username: data.username })
             console.log(socket.rooms)
         })
 

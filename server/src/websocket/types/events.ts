@@ -1,6 +1,7 @@
 
 export interface ServerToClientEvents {
     SEND_MESSAGE: ({ author, content }: { author: string, content: string }) => void;
+    USER_JOINED: ({ username }: { username: string }) => void;
 }
 
 export interface ClientToServerEvents {
@@ -18,3 +19,4 @@ export interface SocketData {
 
 export const SEND_MESSAGE_EVENT = "SEND_MESSAGE";
 export const QUICKCHAT_JOIN_EVENT = "QUICKCHAT_JOIN";
+export const USER_JOINED_EVENT = "USER_JOINED";
