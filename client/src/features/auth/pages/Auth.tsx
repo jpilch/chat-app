@@ -1,8 +1,8 @@
-import styles from './Auth.module.css'
+import styles from "./Auth.module.css";
 
-import CompanyTrademark from '../../app/components/CompanyTrademark';
+import CompanyTrademark from "../../app/components/CompanyTrademark";
 
-import useAuthForm from '../hooks/useAuthForm';
+import useAuthForm from "../hooks/useAuthForm";
 
 function Auth() {
     const form = useAuthForm();
@@ -16,7 +16,7 @@ function Auth() {
                 {form}
             </section>
         </main>
-    )
+    );
 }
 
-export default Auth
+export default Auth;

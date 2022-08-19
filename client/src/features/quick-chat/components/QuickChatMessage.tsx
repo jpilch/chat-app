@@ -1,6 +1,6 @@
-import styles from './QuickChatMessage.module.css'
+import styles from "./QuickChatMessage.module.css";
 
-import { QuickMessage } from '../types';
+import { QuickMessage } from "../types";
 
 function QuickChatMessage({
     message,
@@ -10,12 +10,12 @@ function QuickChatMessage({
     byCurrentUser: boolean,
 }) {
 
-    let author: string = byCurrentUser
-        ? 'You'
+    const author: string = byCurrentUser
+        ? "You"
         : message.author;
 
-    let contentClass: string = byCurrentUser
-        ? `${styles.message__content} ${styles['message__content--current']}`
+    const contentClass: string = byCurrentUser
+        ? `${styles.message__content} ${styles["message__content--current"]}`
         : styles.message__content;
 
     return (
@@ -27,7 +27,7 @@ function QuickChatMessage({
                 {message.content}
             </p>
         </div>
-    )
+    );
 }
 
-export default QuickChatMessage
+export default QuickChatMessage;

@@ -1,18 +1,18 @@
-import styles from './QuickChatWindow.module.css';
+import styles from "./QuickChatWindow.module.css";
 
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 
-import _ from 'lodash';
+import uniqueId from "lodash/uniqueId";
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { useSocket } from '../../chat/hooks';
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useSocket } from "../../chat/hooks";
 
-import { handleIncomingMessage, selectMessages, selectRoomId } from '../state/quickChatSlice';
-import { selectUsername } from '../../auth/authSlice';
+import { handleIncomingMessage, selectMessages, selectRoomId } from "../state/quickChatSlice";
+import { selectUsername } from "../../auth/authSlice";
 
-import { QuickMessage, SEND_MESSAGE_EVENT } from '../types';
+import { QuickMessage, SEND_MESSAGE_EVENT } from "../types";
 
-import QuickChatMessage from './QuickChatMessage';
+import QuickChatMessage from "./QuickChatMessage";
 
 function QuickChatWindow(): JSX.Element {
     const dispatch = useAppDispatch();
@@ -29,13 +29,14 @@ function QuickChatWindow(): JSX.Element {
 
     useEffect(() => {
         socket.on(SEND_MESSAGE_EVENT, (data: QuickMessage) => {
-            dispatch(handleIncomingMessage(data))
-        })
-    }, [])
+            dispatch(handleIncomingMessage(data));
+        });
+    }, []);
 
     useLayoutEffect(() => {
-        bottomRef.current!.scrollIntoView({ behavior: 'smooth' })
-    }, [messages])
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+        bottomRef.current!.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
     return (
         <div className={styles.window} >
@@ -43,14 +44,14 @@ function QuickChatWindow(): JSX.Element {
                 <p className="window__name">Room ID: {roomId}</p>
             </div>
             <div className={styles.window__messages} >
-                {messages.map((message, index) => (
+                {messages.map((message) => (
                     <QuickChatMessage
                         message={message}
                         byCurrentUser={username === message.author}
-                        key={_.uniqueId(message.author)}
+                        key={uniqueId(message.author)}
                     />
                 ))}
-                <div className="last" ref={bottomRef}></div>
+                <div ref={bottomRef}></div>
             </div >
             <div className={styles.window__send}>
                 <input
@@ -61,17 +62,17 @@ function QuickChatWindow(): JSX.Element {
                     onChange={e => setMessage(e.target.value)}
                 />
                 <button
-                    className={`${styles.window__button} ${styles['window__button--submit']}`}
+                    className={`${styles.window__button} ${styles["window__button--submit"]}`}
                     onClick={() => {
                         socket.emit(SEND_MESSAGE_EVENT, { author: username, content: message, roomId });
-                        setMessage('');
+                        setMessage("");
                     }}
                 >
                     Send
                 </button>
             </div>
         </div>
-    )
+    );
 }
 
-export default QuickChatWindow
+export default QuickChatWindow;

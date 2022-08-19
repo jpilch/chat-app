@@ -1,14 +1,14 @@
-import styles from './AuthForm.module.css';
+import styles from "./AuthForm.module.css";
 
-import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch } from '../../app/hooks';
-import { chooseUsername } from '../authSlice';
-import { chooseRoomId } from '../../quick-chat/state/quickChatSlice';
+import { useAppDispatch } from "../../app/hooks";
+import { chooseUsername } from "../authSlice";
+import { chooseRoomId } from "../../quick-chat/state/quickChatSlice";
 
-import { LOGIN_URL } from '../constants';
-import { QUICKCHAT_URL } from '../../quick-chat/constants';
+import { LOGIN_URL } from "../constants";
+import { QUICKCHAT_URL } from "../../quick-chat/constants";
 
 function QuickJoinForm() {
     const navigate = useNavigate();
@@ -18,13 +18,13 @@ function QuickJoinForm() {
         e.preventDefault();
         dispatch(chooseUsername(username));
         dispatch(chooseRoomId(roomId));
-        setUsername('');
-        setRoomId('');
+        setUsername("");
+        setRoomId("");
         navigate(QUICKCHAT_URL);
-    }
+    };
 
-    const [username, setUsername] = useState<string>('');
-    const [roomId, setRoomId] = useState<string>('');
+    const [username, setUsername] = useState<string>("");
+    const [roomId, setRoomId] = useState<string>("");
 
     return (
         <>
@@ -67,7 +67,7 @@ function QuickJoinForm() {
                 </span>
             </p>
         </>
-    )
+    );
 }
 
-export default QuickJoinForm
+export default QuickJoinForm;

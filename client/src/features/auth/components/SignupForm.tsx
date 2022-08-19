@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import { LOGIN_URL, QUICKJOIN_URL } from '../constants';
+import { LOGIN_URL, QUICKJOIN_URL } from "../constants";
 
-import styles from './AuthForm.module.css';
+import styles from "./AuthForm.module.css";
 
 function SignUpForm() {
     const navigate = useNavigate();

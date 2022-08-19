@@ -11,7 +11,7 @@ function QuickChatAuthWrapper({ children }: { children: JSX.Element }) {
     const navigate = useNavigate();
     const username = useAppSelector(selectUsername);
     const roomId = useAppSelector(selectRoomId);
-    const socket = useSocket()
+    const socket = useSocket();
 
     useEffect(() => {
         if (!username || !roomId) {
@@ -22,14 +22,14 @@ function QuickChatAuthWrapper({ children }: { children: JSX.Element }) {
     }, []);
 
     if (!username || !roomId) {
-        return <>Forbidden</>
+        return <>Forbidden</>;
     }
 
     return (
         <>
             {children}
         </>
-    )
+    );
 }
 
-export default QuickChatAuthWrapper
+export default QuickChatAuthWrapper;

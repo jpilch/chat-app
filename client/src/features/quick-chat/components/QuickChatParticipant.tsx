@@ -1,4 +1,4 @@
-import styles from './QuickChatParticipant.module.css'
+import styles from "./QuickChatParticipant.module.css";
 
 function QuickChatParticipant({ username }: { username: string }) {
     return (
@@ -10,7 +10,7 @@ function QuickChatParticipant({ username }: { username: string }) {
             />
             <p className={styles.participant__username}>{username}</p>
         </div>
-    )
+    );
 }
 
-export default QuickChatParticipant
+export default QuickChatParticipant;

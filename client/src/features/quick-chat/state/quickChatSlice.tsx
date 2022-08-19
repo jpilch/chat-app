@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 import { QuickMessage } from "../types";
 
 interface QuickChatState {
@@ -11,14 +11,14 @@ interface QuickChatState {
 const initialState: QuickChatState = {
     roomId: "",
     messages: [
-        { author: 'user 1', content: 'Hi all!' },
-        { author: 'user 2', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!' },
-        { author: 'user 3', content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur repudiandae eos ut, esse repellendus maxime odio voluptas. Atque nesciunt aliquid voluptatibus dolorem corrupti saepe, animi quae sunt illum iste. Quam unde dignissimos placeat omnis assumenda quo saepe harum commodi excepturi accusantium iste, reiciendis nesciunt veniam ' }
+        { author: "user 1", content: "Hi all!" },
+        { author: "user 2", content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!" },
+        { author: "user 3", content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur repudiandae eos ut, esse repellendus maxime odio voluptas. Atque nesciunt aliquid voluptatibus dolorem corrupti saepe, animi quae sunt illum iste. Quam unde dignissimos placeat omnis assumenda quo saepe harum commodi excepturi accusantium iste, reiciendis nesciunt veniam " }
     ]
-}
+};
 
 const quickChatSlice = createSlice({
-    name: 'quickChat',
+    name: "quickChat",
     initialState,
     reducers: {
         chooseRoomId: (state, action: PayloadAction<string>) => {
@@ -28,7 +28,7 @@ const quickChatSlice = createSlice({
             state.messages.push(action.payload);
         }
     }
-})
+});
 
 export const { chooseRoomId, handleIncomingMessage } = quickChatSlice.actions;
 

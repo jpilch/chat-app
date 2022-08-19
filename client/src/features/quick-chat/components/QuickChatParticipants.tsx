@@ -1,9 +1,9 @@
-import styles from './QuickChatParticipants.module.css';
+import styles from "./QuickChatParticipants.module.css";
 
-import QuickChatParticipant from './QuickChatParticipant';
+import QuickChatParticipant from "./QuickChatParticipant";
 
-import { useAppSelector } from '../../app/hooks';
-import { selectUsername } from '../../auth/authSlice';
+import { useAppSelector } from "../../app/hooks";
+import { selectUsername } from "../../auth/authSlice";
 
 const mockParticipants: string[] = [
     "user 1",
@@ -13,7 +13,7 @@ const mockParticipants: string[] = [
     "user 5",
     "user 6",
     "user 7",
-]
+];
 
 function QuickChatParticipants() {
 
@@ -21,7 +21,7 @@ function QuickChatParticipants() {
 
     const participants = mockParticipants.map(name => {
         return name === username ? name + " (You)" : name;
-    })
+    });
 
     return (
         <div className={styles.sidebar}>
@@ -40,7 +40,7 @@ function QuickChatParticipants() {
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default QuickChatParticipants
+export default QuickChatParticipants;

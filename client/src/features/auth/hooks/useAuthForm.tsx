@@ -11,14 +11,14 @@ export function useAuthForm(): JSX.Element {
 
     function getFormByPathname(pathname: string): JSX.Element {
         switch (pathname) {
-            case SIGNUP_URL:
-                return <SignupForm />;
-            case LOGIN_URL:
-                return <LoginForm />;
-            case QUICKJOIN_URL:
-                return <QuickJoinForm />;
-            default:
-                throw new Error(`Cannot get auth form for pathname ${pathname}`);
+        case SIGNUP_URL:
+            return <SignupForm />;
+        case LOGIN_URL:
+            return <LoginForm />;
+        case QUICKJOIN_URL:
+            return <QuickJoinForm />;
+        default:
+            throw new Error(`Cannot get auth form for pathname ${pathname}`);
         }
     }
 

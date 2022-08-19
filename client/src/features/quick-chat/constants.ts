@@ -1,1 +1,1 @@
-export const QUICKCHAT_URL: string = "/quick-chat";
+export const QUICKCHAT_URL = "/quick-chat";

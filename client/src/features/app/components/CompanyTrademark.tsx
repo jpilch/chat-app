@@ -1,4 +1,4 @@
-import styles from './CompanyTrademark.module.css'
+import styles from "./CompanyTrademark.module.css";
 
 function CompanyTrademark() {
     return (

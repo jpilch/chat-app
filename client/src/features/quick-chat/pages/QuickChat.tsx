@@ -1,13 +1,13 @@
-import styles from './QuickChat.module.css'
+import styles from "./QuickChat.module.css";
 
-import { useAppSelector } from '../../app/hooks'
+import { useAppSelector } from "../../app/hooks";
 
-import { selectUsername } from '../../auth/authSlice'
-import { selectRoomId } from '../state/quickChatSlice'
+import { selectUsername } from "../../auth/authSlice";
+import { selectRoomId } from "../state/quickChatSlice";
 
-import QuickChatParticipants from '../components/QuickChatParticipants'
-import QuickChatWindow from '../components/QuickChatWindow'
-import QuickChatAuthWrapper from '../components/QuickChatAuthWrapper';
+import QuickChatParticipants from "../components/QuickChatParticipants";
+import QuickChatWindow from "../components/QuickChatWindow";
+import QuickChatAuthWrapper from "../components/QuickChatAuthWrapper";
 
 function QuickChat() {
     const username = useAppSelector(selectUsername);
@@ -24,7 +24,7 @@ function QuickChat() {
                 </section>
             </main>
         </QuickChatAuthWrapper>
-    )
+    );
 }
 
-export default QuickChat
+export default QuickChat;
