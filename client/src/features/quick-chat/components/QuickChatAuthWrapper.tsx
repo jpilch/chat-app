@@ -5,7 +5,7 @@ import { selectUsername } from "../../auth/authSlice";
 import { QUICKJOIN_URL } from "../../auth/constants";
 import { selectRoomId } from "../state/quickChatSlice";
 import { useSocket } from "../../chat/hooks/useSocket";
-import { QUICKCHAT_JOIN_EVENT } from "../types";
+import { QUICKCHAT_JOIN_EVENT } from "../constants";
 
 function QuickChatAuthWrapper({ children }: { children: JSX.Element }) {
     const navigate = useNavigate();

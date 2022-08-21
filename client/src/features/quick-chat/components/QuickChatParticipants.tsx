@@ -6,14 +6,11 @@ import { useAppSelector } from "../../app/hooks";
 import { selectUsername } from "../../auth/authSlice";
 import { selectParticipants } from "../state/quickChatSlice";
 
+import uniqueId from "lodash/uniqueId";
+
 function QuickChatParticipants() {
 
-    const username = useAppSelector(selectUsername);
     let participants = useAppSelector(selectParticipants);
-
-    participants = participants.map(name => {
-        return name === username ? name + " (You)" : name;
-    });
 
     return (
         <div className={styles.sidebar}>
@@ -26,8 +23,9 @@ function QuickChatParticipants() {
             <div className={styles.sidebar__entries}>
                 {participants.map(participant => (
                     <QuickChatParticipant
-                        username={participant}
-                        key={participant}
+                        username={participant.username}
+                        isTyping={participant.isTyping}
+                        key={uniqueId(participant.username)}
                     />
                 ))}
             </div>

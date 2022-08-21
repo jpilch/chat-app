@@ -1,2 +1,2 @@
-export * from "./events";
 export * from "./QuickMessage";
+export * from "./Participant";

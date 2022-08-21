@@ -1,9 +1,10 @@
 import { IQuickChatService } from "../types/IQuickChatService";
 
 import { useSocket } from "../../chat/hooks";
-import { QuickMessage, SEND_MESSAGE_EVENT, USER_JOINED_EVENT } from "../types";
+import { QuickMessage, } from "../types";
+import { USER_TYPING_EVENT, SEND_MESSAGE_EVENT, USER_JOINED_EVENT } from '../constants';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addParticipant, handleIncomingMessage, selectRoomId } from "../state/quickChatSlice";
+import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId } from "../state/quickChatSlice";
 import { selectUsername } from "../../auth/authSlice";
 import { useCallback } from "react";
 
@@ -18,7 +19,12 @@ export function useQuickChatService(): IQuickChatService {
             dispatch(handleIncomingMessage(data));
         });
         socket.on(USER_JOINED_EVENT, ({ username }: { username: string }) => {
-            dispatch(addParticipant(username));
+            dispatch(addParticipant({ username, isTyping: false, timeoutId: null }));
+        });
+        socket.on(USER_TYPING_EVENT, (username: string) => {
+            dispatch(setUserTypingAction(username));
+            let timeoutId = setTimeout(() => dispatch(setUserNotTypingAction(username)), 3000)
+            dispatch(setUserTimeoutId({ username, timeoutId }))
         });
     }, []);
 
@@ -35,13 +41,22 @@ export function useQuickChatService(): IQuickChatService {
         });
     }, []);
 
+    const setUserTyping = useCallback(() => {
+        socket.emit(USER_TYPING_EVENT, {
+            username,
+            roomId
+        });
+    }, []);
+
     const getRoomId = useCallback(() => {
         return roomId;
     }, []);
 
+
     return {
         registerListeners,
         clearListeners,
+        setUserTyping,
         sendMessage,
         getRoomId
     };

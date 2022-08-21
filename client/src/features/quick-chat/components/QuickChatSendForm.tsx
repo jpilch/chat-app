@@ -1,10 +1,10 @@
 import classNames from "classnames"
-import { FormEvent, useCallback, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 import useQuickChatService from "../hooks/useQuickChatService";
 import styles from './QuickChatSendForm.module.css';
 
 function QuickChatSendForm() {
-    const quickChatService = useMemo(() => useQuickChatService, [])();
+    const quickChatService = useQuickChatService();
 
     const [message, setMessage] = useState<string>("");
 
@@ -25,7 +25,10 @@ function QuickChatSendForm() {
                 placeholder="Message"
                 className={styles.form__input}
                 value={message}
-                onChange={e => setMessage(e.target.value)}
+                onChange={e => {
+                    setMessage(e.target.value)
+                    quickChatService.setUserTyping();
+                }}
             />
             <button
                 type="submit"

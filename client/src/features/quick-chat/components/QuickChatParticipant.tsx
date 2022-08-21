@@ -1,6 +1,10 @@
+import { useRef } from "react";
 import styles from "./QuickChatParticipant.module.css";
 
-function QuickChatParticipant({ username }: { username: string }) {
+function QuickChatParticipant({ username, isTyping }: { username: string, isTyping: boolean }) {
+
+    const statusRef = useRef<HTMLParagraphElement>(null);
+
     return (
         <div className={styles.participant}>
             <img
@@ -9,6 +13,7 @@ function QuickChatParticipant({ username }: { username: string }) {
                 className={styles.participant__img}
             />
             <p className={styles.participant__username}>{username}</p>
+            <p>{isTyping}</p>
         </div>
     );
 }

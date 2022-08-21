@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { QuickMessage } from "../types";
+import { QuickMessage, Participant } from "../types";
 
 interface QuickChatState {
     roomId: string;
     messages: QuickMessage[];
-    participants: string[];
+    participants: Participant[];
 }
 
 const initialState: QuickChatState = {
@@ -17,11 +17,10 @@ const initialState: QuickChatState = {
         { author: "user 3", content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur repudiandae eos ut, esse repellendus maxime odio voluptas. Atque nesciunt aliquid voluptatibus dolorem corrupti saepe, animi quae sunt illum iste. Quam unde dignissimos placeat omnis assumenda quo saepe harum commodi excepturi accusantium iste, reiciendis nesciunt veniam " }
     ],
     participants: [
-        "user 1",
-        "user 2",
-        "user 3",
-        "user 4",
-        "user 5",
+        { username: "user 1", isTyping: false, timeoutId: null },
+        { username: "user 2", isTyping: false, timeoutId: null },
+        { username: "user 3", isTyping: false, timeoutId: null },
+        { username: "user 4", isTyping: false, timeoutId: null },
     ]
 };
 
@@ -35,13 +34,39 @@ const quickChatSlice = createSlice({
         handleIncomingMessage: (state, action: PayloadAction<QuickMessage>) => {
             state.messages.push(action.payload);
         },
-        addParticipant: (state, action: PayloadAction<string>) => {
+        addParticipant: (state, action: PayloadAction<Participant>) => {
             state.participants.push(action.payload);
-        }
+        },
+        setUserTypingAction: (state, action: PayloadAction<string>) => {
+            let participant = state.participants.find(p => (
+                p.username === action.payload
+            ));
+            if (participant!.timeoutId) clearTimeout(participant!.timeoutId);
+            participant!.isTyping = true;
+        },
+        setUserNotTypingAction: (state, action: PayloadAction<string>) => {
+            let participant = state.participants.find(p => (
+                p.username === action.payload
+            ));
+            participant!.isTyping = false;
+        },
+        setUserTimeoutId: (state, action: PayloadAction<{ username: string, timeoutId: number }>) => {
+            let participant = state.participants.find(p => (
+                p.username === action.payload.username
+            ));
+            participant!.timeoutId = action.payload.timeoutId;
+        },
     }
 });
 
-export const { chooseRoomId, handleIncomingMessage, addParticipant } = quickChatSlice.actions;
+export const {
+    chooseRoomId,
+    handleIncomingMessage,
+    addParticipant,
+    setUserTypingAction,
+    setUserNotTypingAction,
+    setUserTimeoutId
+} = quickChatSlice.actions;
 
 export default quickChatSlice.reducer;
 
