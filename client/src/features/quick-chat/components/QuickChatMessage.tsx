@@ -24,6 +24,7 @@ function QuickChatMessage({
                 {author}:
             </p>
             <p className={contentClass}>
+
                 {message.content}
             </p>
         </div>
