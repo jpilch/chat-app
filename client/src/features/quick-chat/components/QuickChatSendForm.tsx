@@ -1,7 +1,7 @@
-import classNames from "classnames"
+import classNames from "classnames";
 import { FormEvent, useState } from "react";
 import useQuickChatService from "../hooks/useQuickChatService";
-import styles from './QuickChatSendForm.module.css';
+import styles from "./QuickChatSendForm.module.css";
 
 function QuickChatSendForm() {
     const quickChatService = useQuickChatService();
@@ -26,7 +26,7 @@ function QuickChatSendForm() {
                 className={styles.form__input}
                 value={message}
                 onChange={e => {
-                    setMessage(e.target.value)
+                    setMessage(e.target.value);
                     quickChatService.setUserTyping();
                 }}
             />
@@ -37,7 +37,7 @@ function QuickChatSendForm() {
                 Send
             </button>
         </form>
-    )
+    );
 }
 
-export default QuickChatSendForm
+export default QuickChatSendForm;

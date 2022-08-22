@@ -14,27 +14,27 @@ export async function attachSocketIoServer(httpServer: http.Server) {
         console.log("User has connected", socket.id);
 
         socket.on(QUICKCHAT_JOIN_EVENT, async (data) => {
-            let sockets = await io.in(data.roomId).fetchSockets();
+            const sockets = await io.in(data.roomId).fetchSockets();
             socket.data = { username: data.username, roomId: data.roomId };
             socket.join(data.roomId);
             socket.join(`${data.username}__${data.roomId}`);
             io.to(`${data.username}__${data.roomId}`).emit(FETCH_PARTICIPANTS_EVENT, sockets.map(s => s.data.username));
-            io.to(data.roomId).emit(USER_JOINED_EVENT, { username: data.username })
-            console.log(socket.rooms)
-        })
+            io.to(data.roomId).emit(USER_JOINED_EVENT, { username: data.username });
+            console.log(socket.rooms);
+        });
 
         socket.on(SEND_MESSAGE_EVENT, ({ content, author, roomId }: { author: string, content: string, roomId: string }) => {
             io.to(roomId).emit(SEND_MESSAGE_EVENT, { author, content });
-        })
+        });
 
         socket.on(USER_TYPING_EVENT, ({ username, roomId }) => {
             io.to(roomId).emit(USER_TYPING_EVENT, username);
-        })
+        });
 
-        socket.on('disconnect', () => {
+        socket.on("disconnect", () => {
             console.log("User has disconnected", socket.data);
             io.to(socket.data.roomId).emit(USER_LEFT_EVENT, socket.data.username);
-        })
+        });
     });
 }
 

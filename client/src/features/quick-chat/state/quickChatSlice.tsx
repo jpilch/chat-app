@@ -39,22 +39,26 @@ const quickChatSlice = createSlice({
             ));
         },
         setUserTypingAction: (state, action: PayloadAction<string>) => {
-            let participant = state.participants.find(p => (
+            const participant = state.participants.find(p => (
                 p.username === action.payload
             ));
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             if (participant!.timeoutId) clearTimeout(participant!.timeoutId);
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             participant!.isTyping = true;
         },
         setUserNotTypingAction: (state, action: PayloadAction<string>) => {
-            let participant = state.participants.find(p => (
+            const participant = state.participants.find(p => (
                 p.username === action.payload
             ));
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             participant!.isTyping = false;
         },
         setUserTimeoutId: (state, action: PayloadAction<{ username: string, timeoutId: number }>) => {
-            let participant = state.participants.find(p => (
+            const participant = state.participants.find(p => (
                 p.username === action.payload.username
             ));
+            /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             participant!.timeoutId = action.payload.timeoutId;
         },
     }

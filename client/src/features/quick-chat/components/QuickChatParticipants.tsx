@@ -10,8 +10,8 @@ import { selectUsername } from "../../auth/authSlice";
 
 function QuickChatParticipants() {
 
-    let participants = useAppSelector(selectParticipants);
-    let username = useAppSelector(selectUsername);
+    const participants = useAppSelector(selectParticipants);
+    const username = useAppSelector(selectUsername);
 
     return (
         <div className={styles.sidebar}>
