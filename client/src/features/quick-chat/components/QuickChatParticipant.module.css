@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 2rem;
+    gap: 3rem;
     padding: 1rem 1rem;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .participant__img {
-    max-height: 40px;
+    max-height: 50px;
     width: auto;
     border-radius: 50%;
     border: 1px solid #ddd;
@@ -20,4 +20,8 @@
 
 .participant__username {
     font-size: 1.3rem;
+}
+
+.participant__status {
+    font-size: smaller;
 }

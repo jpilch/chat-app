@@ -23,7 +23,7 @@ export function useQuickChatService(): IQuickChatService {
         });
         socket.on(USER_TYPING_EVENT, (username: string) => {
             dispatch(setUserTypingAction(username));
-            let timeoutId = setTimeout(() => dispatch(setUserNotTypingAction(username)), 3000)
+            let timeoutId = setTimeout(() => dispatch(setUserNotTypingAction(username)), 1500)
             dispatch(setUserTimeoutId({ username, timeoutId }))
         });
     }, []);
@@ -52,12 +52,16 @@ export function useQuickChatService(): IQuickChatService {
         return roomId;
     }, []);
 
+    const getUsername = useCallback(() => {
+        return username;
+    }, []);
 
     return {
         registerListeners,
         clearListeners,
         setUserTyping,
         sendMessage,
+        getUsername,
         getRoomId
     };
 }

@@ -4,4 +4,5 @@ export interface IQuickChatService {
     sendMessage: (message: string) => void;
     setUserTyping: () => void;
     getRoomId: () => string;
+    getUsername: () => string;
 }
