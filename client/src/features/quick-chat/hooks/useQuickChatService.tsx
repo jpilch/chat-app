@@ -2,9 +2,9 @@ import { IQuickChatService } from "../types/IQuickChatService";
 
 import { useSocket } from "../../chat/hooks";
 import { QuickMessage, } from "../types";
-import { USER_TYPING_EVENT, SEND_MESSAGE_EVENT, USER_JOINED_EVENT } from '../constants';
+import { USER_TYPING_EVENT, SEND_MESSAGE_EVENT, USER_JOINED_EVENT, FETCH_PARTICIPANTS_EVENT } from '../constants';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId } from "../state/quickChatSlice";
+import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId, setParticipants } from "../state/quickChatSlice";
 import { selectUsername } from "../../auth/authSlice";
 import { useCallback } from "react";
 
@@ -20,6 +20,9 @@ export function useQuickChatService(): IQuickChatService {
         });
         socket.on(USER_JOINED_EVENT, ({ username }: { username: string }) => {
             dispatch(addParticipant({ username, isTyping: false, timeoutId: null }));
+        });
+        socket.on(FETCH_PARTICIPANTS_EVENT, (participants: string[]) => {
+            dispatch(setParticipants(participants));
         });
         socket.on(USER_TYPING_EVENT, (username: string) => {
             dispatch(setUserTypingAction(username));

@@ -34,6 +34,11 @@ const quickChatSlice = createSlice({
         handleIncomingMessage: (state, action: PayloadAction<QuickMessage>) => {
             state.messages.push(action.payload);
         },
+        setParticipants: (state, action: PayloadAction<string[]>) => {
+            state.participants = action.payload.map(p => ({
+                username: p, isTyping: false, timeoutId: null
+            }));
+        },
         addParticipant: (state, action: PayloadAction<Participant>) => {
             state.participants.push(action.payload);
         },
@@ -65,7 +70,8 @@ export const {
     addParticipant,
     setUserTypingAction,
     setUserNotTypingAction,
-    setUserTimeoutId
+    setUserTimeoutId,
+    setParticipants
 } = quickChatSlice.actions;
 
 export default quickChatSlice.reducer;
