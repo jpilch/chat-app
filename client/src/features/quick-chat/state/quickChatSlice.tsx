@@ -11,17 +11,8 @@ interface QuickChatState {
 
 const initialState: QuickChatState = {
     roomId: "",
-    messages: [
-        { author: "user 1", content: "Hi all!" },
-        { author: "user 2", content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus eaque consectetur quos eos quis, sequi necessitatibus inventore temporibus ipsa rem!" },
-        { author: "user 3", content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Magnam, natus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur repudiandae eos ut, esse repellendus maxime odio voluptas. Atque nesciunt aliquid voluptatibus dolorem corrupti saepe, animi quae sunt illum iste. Quam unde dignissimos placeat omnis assumenda quo saepe harum commodi excepturi accusantium iste, reiciendis nesciunt veniam " }
-    ],
-    participants: [
-        { username: "user 1", isTyping: false, timeoutId: null },
-        { username: "user 2", isTyping: false, timeoutId: null },
-        { username: "user 3", isTyping: false, timeoutId: null },
-        { username: "user 4", isTyping: false, timeoutId: null },
-    ]
+    messages: [],
+    participants: []
 };
 
 const quickChatSlice = createSlice({
@@ -41,6 +32,11 @@ const quickChatSlice = createSlice({
         },
         addParticipant: (state, action: PayloadAction<Participant>) => {
             state.participants.push(action.payload);
+        },
+        removeParticipant: (state, action: PayloadAction<string>) => {
+            state.participants = state.participants.filter(p => (
+                p.username !== action.payload
+            ));
         },
         setUserTypingAction: (state, action: PayloadAction<string>) => {
             let participant = state.participants.find(p => (
@@ -71,7 +67,8 @@ export const {
     setUserTypingAction,
     setUserNotTypingAction,
     setUserTimeoutId,
-    setParticipants
+    setParticipants,
+    removeParticipant
 } = quickChatSlice.actions;
 
 export default quickChatSlice.reducer;

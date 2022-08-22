@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData, USER_JOINED_EVENT, USER_TYPING_EVENT, FETCH_PARTICIPANTS_EVENT } from "./types/events";
+import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData, USER_JOINED_EVENT, USER_TYPING_EVENT, FETCH_PARTICIPANTS_EVENT, USER_LEFT_EVENT } from "./types/events";
 import { SEND_MESSAGE_EVENT, QUICKCHAT_JOIN_EVENT } from "./types/events";
 import { corsConfig } from "./config";
 
@@ -15,7 +15,7 @@ export async function attachSocketIoServer(httpServer: http.Server) {
 
         socket.on(QUICKCHAT_JOIN_EVENT, async (data) => {
             let sockets = await io.in(data.roomId).fetchSockets();
-            socket.data = { username: data.username };
+            socket.data = { username: data.username, roomId: data.roomId };
             socket.join(data.roomId);
             socket.join(`${data.username}__${data.roomId}`);
             io.to(`${data.username}__${data.roomId}`).emit(FETCH_PARTICIPANTS_EVENT, sockets.map(s => s.data.username));
@@ -32,7 +32,8 @@ export async function attachSocketIoServer(httpServer: http.Server) {
         })
 
         socket.on('disconnect', () => {
-            console.log("User has disconnected", socket.id);
+            console.log("User has disconnected", socket.data);
+            io.to(socket.data.roomId).emit(USER_LEFT_EVENT, socket.data.username);
         })
     });
 }

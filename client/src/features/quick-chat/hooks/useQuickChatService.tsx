@@ -2,9 +2,9 @@ import { IQuickChatService } from "../types/IQuickChatService";
 
 import { useSocket } from "../../chat/hooks";
 import { QuickMessage, } from "../types";
-import { USER_TYPING_EVENT, SEND_MESSAGE_EVENT, USER_JOINED_EVENT, FETCH_PARTICIPANTS_EVENT } from '../constants';
+import { USER_TYPING_EVENT, SEND_MESSAGE_EVENT, USER_JOINED_EVENT, FETCH_PARTICIPANTS_EVENT, USER_LEFT_EVENT } from '../constants';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId, setParticipants } from "../state/quickChatSlice";
+import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId, setParticipants, removeParticipant } from "../state/quickChatSlice";
 import { selectUsername } from "../../auth/authSlice";
 import { useCallback } from "react";
 
@@ -29,6 +29,9 @@ export function useQuickChatService(): IQuickChatService {
             let timeoutId = setTimeout(() => dispatch(setUserNotTypingAction(username)), 1500)
             dispatch(setUserTimeoutId({ username, timeoutId }))
         });
+        socket.on(USER_LEFT_EVENT, (username: string) => {
+            dispatch(removeParticipant(username));
+        })
     }, []);
 
     const clearListeners = useCallback(() => {
