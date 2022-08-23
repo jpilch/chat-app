@@ -15,4 +15,5 @@
 
 .chat__window {
     grid-area: chat-window;
+    overflow: hidden;
 }
