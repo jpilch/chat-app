@@ -14,6 +14,7 @@
 }
 
 .chat__window {
+    box-shadow: var(--light-box-shadow);
     grid-area: chat-window;
     overflow: hidden;
 }

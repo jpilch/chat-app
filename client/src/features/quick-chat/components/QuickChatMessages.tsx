@@ -4,6 +4,8 @@ import QuickChatMessage from "./QuickChatMessage";
 import { useAppSelector } from "../../app/hooks";
 import { selectUsername } from "../../auth/authSlice";
 import { selectMessages } from "../state/quickChatSlice";
+import QuickChatMessageGroup from "./QuickChatMessageGroup";
+import { groupMessages } from "../utils";
 
 function QuickChatMessages() {
     const username = useAppSelector(selectUsername);
@@ -18,11 +20,11 @@ function QuickChatMessages() {
 
     return (
         <>
-            {messages.map((message) => (
-                <QuickChatMessage
-                    message={message}
-                    byCurrentUser={username === message.author}
-                    key={uniqueId(message.author)}
+            {groupMessages(messages).map((messageGroup) => (
+                <QuickChatMessageGroup
+                    messageGroup={messageGroup}
+                    byCurrentUser={messageGroup.author === username}
+                    key={uniqueId(messageGroup.author)}
                 />
             ))}
             <div ref={bottomRef}></div>
