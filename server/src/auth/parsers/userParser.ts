@@ -1,9 +1,6 @@
 import { ParsingError } from "../../common/errors";
 import { User } from "../types";
-
-export function isString(text: unknown): text is string {
-    return typeof text === 'string';
-}
+import { isString } from "../../common/utils";
 
 export function parseEmail(email: unknown): string {
     /* pattern taken somewhere from SO */
