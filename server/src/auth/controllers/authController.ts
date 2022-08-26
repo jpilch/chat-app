@@ -14,14 +14,14 @@ authController.get("/", (_req, res) => {
 
 authController.post("/register", async (req, res) => {
     const user = parseUser(req.body);
-    const createdUser = await authService.registerUser(user);
+    const createdUser = await authService.register(user);
     return res.status(201).json(createdUser);
 });
 
 authController.post("/login", async (req, res) => {
     const credentials = parseLoginCredentials(req.body);
-    console.log(credentials);
-    return res.json(credentials);
+    const token = await authService.login(credentials);
+    return res.json({ token });
 })
 
 export default authController;
