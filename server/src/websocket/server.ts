@@ -1,12 +1,12 @@
 import { Server, Socket } from "socket.io";
-import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData, QC_USER_JOINED_EVENT, QC_USER_TYPING_EVENT, QC_FETCH_PARTICIPANTS_EVENT, QC_USER_LEFT_EVENT } from "./types/events";
-import { QC_SEND_MESSAGE_EVENT, QC_JOIN_EVENT } from "./types/events";
-import { corsConfig } from "./config";
-
 import http from "http";
 
-export async function attachSocketIoServer(httpServer: http.Server) {
-    const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(httpServer, {
+import { QC_USER_JOINED_EVENT, QC_USER_TYPING_EVENT, QC_FETCH_PARTICIPANTS_EVENT, QC_USER_LEFT_EVENT, QC_SEND_MESSAGE_EVENT, QC_JOIN_EVENT } from "../quickchat/constants/events";
+import { QCServerToClientEvents, QCClientToServerEvents, QCInterServerEvents, QCSocketData } from "../quickchat/types";
+import { corsConfig } from "./config";
+
+export async function attachQCSocketIoServer(httpServer: http.Server) {
+    const io = new Server<QCClientToServerEvents, QCServerToClientEvents, QCInterServerEvents, QCSocketData>(httpServer, {
         cors: corsConfig,
     });
 

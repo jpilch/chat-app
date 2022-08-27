@@ -5,13 +5,13 @@ import { PORT } from "./common/config";
 
 const server = http.createServer(app);
 
-import { attachSocketIoServer } from "./websocket";
+import { attachQCSocketIoServer } from "./websocket";
 
-attachSocketIoServer(server)
-    .then(() => {
-        server.listen(PORT, () => {
-            console.log(`Server listening on port ${PORT}`);
-        });
-    }).catch(_err => {
-        console.log("An error occured");
+async function bootstrap(server: http.Server) {
+    await attachQCSocketIoServer(server);
+    server.listen(PORT, () => {
+        console.log(`Server listening on port ${PORT}`);
     });
+}
+
+bootstrap(server);
