@@ -6,6 +6,7 @@ import { LoginCredentials, User, UserInDb } from "../types";
 import { IAuthService } from "../types/authService";
 import { JWT_SECRET } from "../../common/config";
 import { TokenPayload } from "../types/tokenPayload";
+import { AuthenticationError } from "../../common/errors";
 
 const prisma = new PrismaClient();
 
@@ -24,8 +25,9 @@ async function login(credentials: LoginCredentials): Promise<string> {
     const passwordMatches: boolean = user
         ? await argon2.verify(user.passwordHash, credentials.password)
         : false;
-    if (!user || !passwordMatches) throw new Error("auth failed");
-    const payload: TokenPayload = { username: user.username }
+    if (!user || !passwordMatches) throw new AuthenticationError(
+        "Username or password do not match");
+    const payload: TokenPayload = { username: user.username, id: user.id };
     const token = jwt.sign(payload, JWT_SECRET);
     return token;
 }

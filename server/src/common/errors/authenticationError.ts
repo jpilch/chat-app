@@ -1,5 +1,5 @@
-export class ParsingError extends Error {
-    public readonly status: number = 400;
+export class AuthenticationError extends Error {
+    public readonly status: number = 403;
     public readonly description: string;
 
     constructor(message: string) {

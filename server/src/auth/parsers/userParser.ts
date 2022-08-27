@@ -5,21 +5,21 @@ import { isString } from "../../common/utils";
 export function parseEmail(email: unknown): string {
     /* pattern taken somewhere from SO */
     if (!email || !isString(email) || !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-        throw new ParsingError("Incorrect or missing email", 400);
+        throw new ParsingError("Incorrect or missing email");
     }
     return email;
 }
 
 export function parseUsername(username: unknown): string {
     if (!username || !isString(username)) {
-        throw new ParsingError("Incorrect or missing username", 400);
+        throw new ParsingError("Incorrect or missing username");
     }
     return username;
 }
 
 export function parsePassword(password: unknown): string {
     if (!password || !isString(password)) {
-        throw new ParsingError("Incorrect or missing password", 400);
+        throw new ParsingError("Incorrect or missing password");
     }
     return password;
 }

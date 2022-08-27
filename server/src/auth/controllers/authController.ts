@@ -3,10 +3,12 @@ import express from "express";
 import { parseUser } from "../parsers";
 import { parseLoginCredentials } from "../parsers/loginCredentialsParser";
 import { authService } from "../services";
+import { authenticatorMiddleware } from "../middlewares";
 
 export const authController = express.Router();
 
-authController.get("/", (_req, res) => {
+authController.get("/", authenticatorMiddleware, (req, res) => {
+    console.log(req.user)
     return res
         .setHeader("Content-Type", "application/json")
         .send("dummy endpoint");
