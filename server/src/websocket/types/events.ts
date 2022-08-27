@@ -1,16 +1,16 @@
 
 export interface ServerToClientEvents {
-    SEND_MESSAGE: ({ author, content }: { author: string, content: string }) => void;
-    USER_JOINED: ({ username }: { username: string }) => void;
-    USER_TYPING: ({ username, roomId }: { username: string, roomId: string }) => void;
-    FETCH_PARTICIPANTS: (participants: string[]) => void;
-    USER_LEFT: (username: string) => void;
+    QC_SEND_MESSAGE: ({ author, content }: { author: string, content: string }) => void;
+    QC_USER_JOINED: ({ username }: { username: string }) => void;
+    QC_USER_TYPING: ({ username, roomId }: { username: string, roomId: string }) => void;
+    QC_FETCH_PARTICIPANTS: (participants: string[]) => void;
+    QC_USER_LEFT: (username: string) => void;
 }
 
 export interface ClientToServerEvents {
-    QUICKCHAT_JOIN: ({ username, roomId }: { username: string, roomId: string }) => void;
-    SEND_MESSAGE: ({ author, content, roomId }: { author: string, content: string, roomId: string }) => void;
-    USER_TYPING: ({ username, roomId }: { username: string, roomId: string }) => void;
+    QC_JOIN: ({ username, roomId }: { username: string, roomId: string }) => void;
+    QC_SEND_MESSAGE: ({ author, content, roomId }: { author: string, content: string, roomId: string }) => void;
+    QC_USER_TYPING: ({ username, roomId }: { username: string, roomId: string }) => void;
 }
 
 export interface InterServerEvents {
@@ -22,9 +22,9 @@ export interface SocketData {
     data: any
 }
 
-export const SEND_MESSAGE_EVENT = "SEND_MESSAGE";
-export const QUICKCHAT_JOIN_EVENT = "QUICKCHAT_JOIN";
-export const USER_JOINED_EVENT = "USER_JOINED";
-export const USER_TYPING_EVENT = "USER_TYPING";
-export const FETCH_PARTICIPANTS_EVENT = "FETCH_PARTICIPANTS";
-export const USER_LEFT_EVENT = "USER_LEFT";
+export const QC_SEND_MESSAGE_EVENT = "QC_SEND_MESSAGE";
+export const QC_JOIN_EVENT = "QC_JOIN";
+export const QC_USER_JOINED_EVENT = "QC_USER_JOINED";
+export const QC_USER_TYPING_EVENT = "QC_USER_TYPING";
+export const QC_FETCH_PARTICIPANTS_EVENT = "QC_FETCH_PARTICIPANTS";
+export const QC_USER_LEFT_EVENT = "QC_USER_LEFT";
