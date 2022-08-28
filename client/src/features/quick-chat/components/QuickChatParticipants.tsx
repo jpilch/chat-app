@@ -6,7 +6,7 @@ import { useAppSelector } from "../../app/hooks";
 import { selectParticipants } from "../state/quickChatSlice";
 
 import uniqueId from "lodash/uniqueId";
-import { selectUsername } from "../../auth/authSlice";
+import { selectUsername } from "../../quick-auth/authSlice";
 import { useState } from "react";
 
 function QuickChatParticipants() {

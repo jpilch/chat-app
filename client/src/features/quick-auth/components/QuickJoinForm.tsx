@@ -1,4 +1,4 @@
-import styles from "./AuthForm.module.css";
+import styles from "../../auth/components/AuthForm.module.css";
 
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { chooseUsername } from "../authSlice";
 import { chooseRoomId } from "../../quick-chat/state/quickChatSlice";
 
-import { LOGIN_URL } from "../constants";
+import { LOGIN_URL } from "../../auth/constants";
 import { QUICKCHAT_URL } from "../../quick-chat/constants";
 
 function QuickJoinForm() {

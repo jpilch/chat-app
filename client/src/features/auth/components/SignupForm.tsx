@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { LOGIN_URL, QUICKJOIN_URL } from "../constants";
+import { LOGIN_URL, QUICKJOIN_URL } from "../../auth/constants";
 
 import styles from "./AuthForm.module.css";
 
