@@ -4,14 +4,14 @@ import { useAppSelector } from "../../app/hooks";
 import { selectUsername } from "../../auth/authSlice";
 import { QUICKJOIN_URL } from "../../auth/constants";
 import { selectRoomId } from "../state/quickChatSlice";
-import { useSocket } from "../../chat/hooks/useSocket";
+import { useQuickChatSocket } from "../hooks";
 import { QC_JOIN_EVENT } from "../constants";
 
 function QuickChatAuthWrapper({ children }: { children: JSX.Element }) {
     const navigate = useNavigate();
     const username = useAppSelector(selectUsername);
     const roomId = useAppSelector(selectRoomId);
-    const socket = useSocket();
+    const socket = useQuickChatSocket();
 
     useEffect(() => {
         if (!username || !roomId) {
