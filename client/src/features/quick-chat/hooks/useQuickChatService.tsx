@@ -1,6 +1,6 @@
 import { IQuickChatService } from "../types/IQuickChatService";
 
-import { useSocket } from "../../chat/hooks";
+import { useQuickChatSocket } from "./useQuickChatSocket";
 import { QuickMessage, } from "../types";
 import { QC_USER_TYPING_EVENT, QC_SEND_MESSAGE_EVENT, QC_USER_JOINED_EVENT, QC_FETCH_PARTICIPANTS_EVENT, QC_USER_LEFT_EVENT } from "../constants";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -12,7 +12,7 @@ export function useQuickChatService(): IQuickChatService {
     const dispatch = useAppDispatch();
     const username = useAppSelector(selectUsername);
     const roomId = useAppSelector(selectRoomId);
-    const socket = useSocket();
+    const socket = useQuickChatSocket();
 
     const registerListeners = useCallback(() => {
         socket.on(QC_SEND_MESSAGE_EVENT, (data: QuickMessage) => {
