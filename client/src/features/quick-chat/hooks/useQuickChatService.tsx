@@ -5,7 +5,7 @@ import { QuickMessage, } from "../types";
 import { QC_USER_TYPING_EVENT, QC_SEND_MESSAGE_EVENT, QC_USER_JOINED_EVENT, QC_FETCH_PARTICIPANTS_EVENT, QC_USER_LEFT_EVENT } from "../constants";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addParticipant, handleIncomingMessage, selectRoomId, setUserTypingAction, setUserNotTypingAction, setUserTimeoutId, setParticipants, removeParticipant } from "../state/quickChatSlice";
-import { selectUsername } from "../../auth/authSlice";
+import { selectUsername } from "../../quick-auth/authSlice";
 import { useCallback } from "react";
 
 export function useQuickChatService(): IQuickChatService {

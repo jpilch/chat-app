@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import uniqueId from "lodash/uniqueId";
 import QuickChatMessage from "./QuickChatMessage";
 import { useAppSelector } from "../../app/hooks";
-import { selectUsername } from "../../auth/authSlice";
+import { selectUsername } from "../../quick-auth/authSlice";
 import { selectMessages } from "../state/quickChatSlice";
 import QuickChatMessageGroup from "./QuickChatMessageGroup";
 import { groupMessages } from "../utils";

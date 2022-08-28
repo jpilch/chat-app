@@ -2,10 +2,10 @@ import styles from "./Auth.module.css";
 
 import CompanyTrademark from "../../app/components/CompanyTrademark";
 
-import useAuthForm from "../hooks/useAuthForm";
+import useAuthForm from "../../auth/hooks/useAuthForm";
 
 function Auth() {
-    const form = useAuthForm();
+    let form = useAuthForm();
 
     return (
         <main className={styles.auth}>

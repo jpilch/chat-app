@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../auth/authSlice";
+import authSlice from "../quick-auth/authSlice";
 import quickChatSlice from "../quick-chat/state/quickChatSlice";
 
 export const store = configureStore({

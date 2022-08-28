@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 import { LoginCredentials, User, UserInDb } from "../types";
 import { IAuthService } from "../types/authService";
-import { JWT_SECRET } from "../../common/config";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config";
 import { TokenPayload } from "../types/tokenPayload";
 import { AuthenticationError } from "../../common/errors";
 
@@ -28,7 +28,7 @@ async function login(credentials: LoginCredentials): Promise<string> {
     if (!user || !passwordMatches) throw new AuthenticationError(
         "Username or password do not match");
     const payload: TokenPayload = { username: user.username, id: user.id };
-    const token = jwt.sign(payload, JWT_SECRET);
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
     return token;
 }
 

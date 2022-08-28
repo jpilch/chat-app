@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
-import { selectUsername } from "../../auth/authSlice";
+import { selectUsername } from "../../quick-auth/authSlice";
 import { QUICKJOIN_URL } from "../../auth/constants";
 import { selectRoomId } from "../state/quickChatSlice";
 import { useQuickChatSocket } from "../hooks";
