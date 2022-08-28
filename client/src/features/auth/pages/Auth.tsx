@@ -5,7 +5,7 @@ import CompanyTrademark from "../../app/components/CompanyTrademark";
 import useAuthForm from "../../auth/hooks/useAuthForm";
 
 function Auth() {
-    let form = useAuthForm();
+    const form = useAuthForm();
 
     return (
         <main className={styles.auth}>

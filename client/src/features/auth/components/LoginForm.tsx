@@ -1,10 +1,11 @@
 import styles from "./AuthForm.module.css";
-import { useNavigate } from "react-router-dom";
 
-import { SIGNUP_URL, QUICKJOIN_URL } from "../../auth/constants";
+import { setAuthForm } from "../state";
+import { Form } from "../state";
+import { useAppDispatch } from "../../app/hooks";
 
 function LoginForm() {
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     return (
         <>
@@ -33,7 +34,7 @@ function LoginForm() {
                 <button
                     className={`${styles.auth__button} ${styles["auth__button--redirect"]}`}
                     type="button"
-                    onClick={() => navigate(SIGNUP_URL)}
+                    onClick={() => dispatch(setAuthForm(Form.Register))}
                 >
                     Sign up
                 </button>
@@ -42,7 +43,7 @@ function LoginForm() {
                 In a hurry? Try out {" "}
                 <span
                     className={styles.auth__skip_link}
-                    onClick={() => navigate(QUICKJOIN_URL)}
+                    onClick={() => dispatch(setAuthForm(Form.QuickJoin))}
                 >
                     Quick Chat
                 </span>

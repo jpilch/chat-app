@@ -1,28 +1,29 @@
-import { useLocation } from "react-router-dom";
-
 import SignupForm from "../components/SignupForm";
 import LoginForm from "../../auth/components/LoginForm";
 import QuickJoinForm from "../../quick-auth/components/QuickJoinForm";
+import { useAppSelector } from "../../app/hooks";
+import { selectAuthForm } from "../state";
 
-import { LOGIN_URL, QUICKJOIN_URL, SIGNUP_URL } from "../constants";
+import { Form } from "../state";
 
 export function useAuthForm(): JSX.Element {
-    const location = useLocation();
 
-    function getFormByPathname(pathname: string): JSX.Element {
-        switch (pathname) {
-            case SIGNUP_URL:
+    const authForm = useAppSelector(selectAuthForm);
+
+    function getFormByPathname(authForm: Form): JSX.Element {
+        switch (authForm) {
+            case Form.Register:
                 return <SignupForm />;
-            case LOGIN_URL:
+            case Form.Login:
                 return <LoginForm />;
-            case QUICKJOIN_URL:
+            case Form.QuickJoin:
                 return <QuickJoinForm />;
             default:
-                throw new Error(`Cannot get auth form for pathname ${pathname}`);
+                throw new Error(`Cannot get auth form`);
         }
     }
 
-    return getFormByPathname(location.pathname);
+    return getFormByPathname(authForm);
 }
 
 export default useAuthForm;

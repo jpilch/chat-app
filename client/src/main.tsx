@@ -19,10 +19,7 @@ root.render(
         <Provider store={store}>
             <Routes>
                 <Route path='/' element={<App />}>
-                    <Route path="/sign-up" element={<Auth />} />
-                    <Route path="/login" element={<Auth />} />
-                    <Route path="/quick-join" element={<Auth />} />
-                    <Route path="/quick-chat" element={<QuickChat />} />
+                    <Route path="/" element={<Auth />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>
