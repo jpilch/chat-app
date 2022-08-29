@@ -20,6 +20,7 @@ root.render(
             <Routes>
                 <Route path='/' element={<App />}>
                     <Route path="/" element={<Auth />} />
+                    <Route path="/quickchat" element={<QuickChat />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>

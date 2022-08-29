@@ -1,4 +1,4 @@
-export const QUICKCHAT_URL = "/quick-chat";
+export const QUICKCHAT_URL = "/quickchat";
 
 export const QC_SEND_MESSAGE_EVENT = "QC_SEND_MESSAGE";
 export const QC_JOIN_EVENT = "QC_JOIN";

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectUsername } from "../../quick-auth/authSlice";
-import { QUICKJOIN_URL } from "../../auth/constants";
+import { AUTH_URL } from "../../auth/constants";
 import { selectRoomId } from "../state/quickChatSlice";
 import { useQuickChatSocket } from "../hooks";
 import { QC_JOIN_EVENT } from "../constants";
@@ -15,7 +15,7 @@ function QuickChatAuthWrapper({ children }: { children: JSX.Element }) {
 
     useEffect(() => {
         if (!username || !roomId) {
-            navigate(QUICKJOIN_URL);
+            navigate(AUTH_URL);
             return;
         }
         socket.emit(QC_JOIN_EVENT, ({ username, roomId }));
