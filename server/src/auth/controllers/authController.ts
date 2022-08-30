@@ -23,7 +23,8 @@ authController.post("/register", async (req, res) => {
 authController.post("/login", async (req, res) => {
     const credentials = parseLoginCredentials(req.body);
     const token = await authService.login(credentials);
-    return res.json({ token });
+    const { username } = credentials;
+    return res.json({ token, username });
 })
 
 export default authController;

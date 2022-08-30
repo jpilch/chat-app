@@ -10,8 +10,8 @@ const initialState: AuthState = {
     username: "",
 };
 
-const authSlice = createSlice({
-    name: "auth",
+const quickAuthSlice = createSlice({
+    name: "quickAuth",
     initialState,
     reducers: {
         chooseUsername: (state, action: PayloadAction<string>) => {
@@ -20,8 +20,8 @@ const authSlice = createSlice({
     }
 });
 
-export const { chooseUsername } = authSlice.actions;
+export const { chooseUsername } = quickAuthSlice.actions;
 
-export const selectUsername = (state: RootState) => state.auth.username;
+export const selectUsername = (state: RootState) => state.quickAuth.username;
 
-export default authSlice.reducer;
+export default quickAuthSlice.reducer;

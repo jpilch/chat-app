@@ -2,10 +2,10 @@ import styles from "./AuthForm.module.css";
 
 import { setAuthForm } from "../state";
 import { Form } from "../state";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { values } from "lodash";
-import classNames from "classnames";
+import { login, selectAuthStatus } from "../state/authSlice";
+import { useEffect } from "react";
 
 type LoginInputs = {
     username: string,
@@ -16,9 +16,13 @@ function LoginForm() {
     const dispatch = useAppDispatch();
 
     const { handleSubmit, register, formState: { errors } } = useForm<LoginInputs>();
-    const onSubmit: SubmitHandler<LoginInputs> = data => {
-        console.log(data)
-    }
+    const onSubmit: SubmitHandler<LoginInputs> = (data) => dispatch(login(data));
+
+    const authStatus = useAppSelector(selectAuthStatus);
+
+    useEffect(() => {
+        console.log({ authStatus });
+    }, [authStatus])
 
     return (
         <>
