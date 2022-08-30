@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { login, selectAuthStatus } from "../state/authSlice";
 import { useEffect } from "react";
+import { NotificationStatus, notify } from "../../notification/state/notificationSlice";
+import { RequestStatus } from "../../common/types";
 
 type LoginInputs = {
     username: string,
@@ -21,7 +23,12 @@ function LoginForm() {
     const authStatus = useAppSelector(selectAuthStatus);
 
     useEffect(() => {
-        console.log({ authStatus });
+        if (authStatus === RequestStatus.fullfilled) {
+            dispatch(notify("Successful login!", NotificationStatus.success));
+        }
+        if (authStatus === RequestStatus.rejected) {
+            dispatch(notify("Wrong credentials.", NotificationStatus.failure));
+        }
     }, [authStatus])
 
     return (
