@@ -4,10 +4,7 @@ import { setAuthForm } from "../state";
 import { Form } from "../state";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { login, selectAuthStatus } from "../state/authSlice";
-import { useEffect } from "react";
-import { NotificationStatus, notify } from "../../notification/state/notificationSlice";
-import { RequestStatus } from "../../common/types";
+import { login } from "../state/authSlice";
 import { useNavigate } from "react-router-dom";
 
 type LoginInputs = {
@@ -19,19 +16,10 @@ function LoginForm() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { handleSubmit, register, formState: { errors } } = useForm<LoginInputs>();
-    const onSubmit: SubmitHandler<LoginInputs> = (data) => dispatch(login(data));
-
-    const authStatus = useAppSelector(selectAuthStatus);
-
-    useEffect(() => {
-        if (authStatus === RequestStatus.fullfilled) {
-            dispatch(notify("Successful login!", NotificationStatus.success));
-            navigate("/chat");
-        }
-        if (authStatus === RequestStatus.rejected) {
-            dispatch(notify("Wrong credentials.", NotificationStatus.failure));
-        }
-    }, [authStatus])
+    const onSubmit: SubmitHandler<LoginInputs> = (data) => {
+        dispatch(login(data));
+        navigate("/chat");
+    };
 
     return (
         <>

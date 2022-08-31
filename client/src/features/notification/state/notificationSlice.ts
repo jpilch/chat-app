@@ -58,7 +58,7 @@ export const loginRequiredNotification = (): ThunkAction<void, RootState, unknow
         dispatch(clearIntervalId());
         dispatch(showNotification({
             message: "Login required",
-            status: NotificationStatus.success
+            status: NotificationStatus.warning
         }));
         dispatch(setIntervalId(
             setInterval(() => dispatch(increaseBarWidthBy(0.2)), 10)
@@ -70,8 +70,8 @@ export const loginFailedNotification = (): ThunkAction<void, RootState, unknown,
     async dispatch => {
         dispatch(clearIntervalId());
         dispatch(showNotification({
-            message: "Login failed: check your username and password",
-            status: NotificationStatus.success
+            message: "Check your credentials and try again",
+            status: NotificationStatus.failure
         }));
         dispatch(setIntervalId(
             setInterval(() => dispatch(increaseBarWidthBy(0.2)), 10)

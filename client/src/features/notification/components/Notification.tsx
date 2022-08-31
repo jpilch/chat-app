@@ -3,7 +3,7 @@ import styles from "./Notification.module.css";
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { hideNotification, NotificationStatus, selectMessage, selectNotificationBarWidth, selectNotificationClassModifier, selectNotificationStatus, setMessage, setNotificationStatus, setTimeoutId, showNotification } from "../state/notificationSlice"
 import classNames from "classnames";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const getNotificationBarClassModifier = (status: NotificationStatus): string => {
     switch (status) {
@@ -28,16 +28,18 @@ function Notification() {
 
     const dispatch = useAppDispatch();
 
+    const closeNotification = useCallback(() => {
+        dispatch(hideNotification(null));
+        dispatch(setTimeoutId(
+            setTimeout(() => {
+                dispatch(setNotificationStatus(NotificationStatus.idle))
+                dispatch(setMessage(null));
+            }, 1000)
+        ))
+    }, [])
+
     useEffect(() => {
-        if (Math.floor(notificationBarWidth) >= 100) {
-            dispatch(hideNotification(null));
-            dispatch(setTimeoutId(
-                setTimeout(() => {
-                    dispatch(setNotificationStatus(NotificationStatus.idle))
-                    dispatch(setMessage(null));
-                }, 1000)
-            ))
-        }
+        if (Math.floor(notificationBarWidth) >= 100) closeNotification();
     }, [notificationBarWidth])
 
     return (
@@ -54,6 +56,7 @@ function Notification() {
                 className={styles.notification__close_icon}
                 width="12"
                 height="12"
+                onClick={closeNotification}
             />
             <div className={
                 classNames(

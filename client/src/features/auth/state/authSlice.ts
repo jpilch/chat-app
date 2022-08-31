@@ -48,10 +48,6 @@ const authSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, action: PayloadAction<Partial<AuthState>>) => {
                 state.status = RequestStatus.fullfilled;
-                /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-                state.token = action.payload.token!;
-                /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-                state.username = action.payload.username!;
                 localStorageSet(import.meta.env.VITE_USER_AUTH_DATA, action.payload);
             })
             .addCase(login.rejected, (state, _action) => {
