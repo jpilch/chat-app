@@ -45,7 +45,7 @@ function Notification() {
             styles.notification,
             notificationClassModifier
         )}>
-            <p className={styles.notification__message}>
+            <p>
                 {message}
             </p>
             <img

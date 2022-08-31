@@ -8,6 +8,7 @@ import { login, selectAuthStatus } from "../state/authSlice";
 import { useEffect } from "react";
 import { NotificationStatus, notify } from "../../notification/state/notificationSlice";
 import { RequestStatus } from "../../common/types";
+import { useNavigate } from "react-router-dom";
 
 type LoginInputs = {
     username: string,
@@ -16,7 +17,7 @@ type LoginInputs = {
 
 function LoginForm() {
     const dispatch = useAppDispatch();
-
+    const navigate = useNavigate();
     const { handleSubmit, register, formState: { errors } } = useForm<LoginInputs>();
     const onSubmit: SubmitHandler<LoginInputs> = (data) => dispatch(login(data));
 
@@ -25,6 +26,7 @@ function LoginForm() {
     useEffect(() => {
         if (authStatus === RequestStatus.fullfilled) {
             dispatch(notify("Successful login!", NotificationStatus.success));
+            navigate("/chat");
         }
         if (authStatus === RequestStatus.rejected) {
             dispatch(notify("Wrong credentials.", NotificationStatus.failure));

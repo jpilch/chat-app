@@ -39,8 +39,6 @@
     }
 }
 
-.notification__message {}
-
 .notification__bar {
     position: absolute;
     bottom: 0;

@@ -7,6 +7,7 @@ import { store } from "./features/app/store";
 import App from "./features/app/components/App";
 import NotFound from "./features/app/components/NotFound";
 import Auth from "./features/auth/pages/Auth";
+import Chat from "./features/chat/pages/Chat";
 import QuickChat from "./features/quick-chat/pages/QuickChat";
 
 import "./styles/index.css";
@@ -20,6 +21,7 @@ root.render(
             <Routes>
                 <Route path='/' element={<App />}>
                     <Route path="/" element={<Auth />} />
+                    <Route path="/chat" element={<Chat />} />
                     <Route path="/quickchat" element={<QuickChat />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>

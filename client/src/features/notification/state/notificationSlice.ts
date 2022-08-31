@@ -40,6 +40,45 @@ export const notify = (message: string, status: NotificationStatus): ThunkAction
     }
 )
 
+export const loginSuccessfulNotification = (): ThunkAction<void, RootState, unknown, AnyAction> => (
+    async dispatch => {
+        dispatch(clearIntervalId());
+        dispatch(showNotification({
+            message: "Login successful",
+            status: NotificationStatus.success
+        }));
+        dispatch(setIntervalId(
+            setInterval(() => dispatch(increaseBarWidthBy(0.2)), 10)
+        ))
+    }
+)
+
+export const loginRequiredNotification = (): ThunkAction<void, RootState, unknown, AnyAction> => (
+    async dispatch => {
+        dispatch(clearIntervalId());
+        dispatch(showNotification({
+            message: "Login required",
+            status: NotificationStatus.success
+        }));
+        dispatch(setIntervalId(
+            setInterval(() => dispatch(increaseBarWidthBy(0.2)), 10)
+        ))
+    }
+)
+
+export const loginFailedNotification = (): ThunkAction<void, RootState, unknown, AnyAction> => (
+    async dispatch => {
+        dispatch(clearIntervalId());
+        dispatch(showNotification({
+            message: "Login failed: check your username and password",
+            status: NotificationStatus.success
+        }));
+        dispatch(setIntervalId(
+            setInterval(() => dispatch(increaseBarWidthBy(0.2)), 10)
+        ))
+    }
+)
+
 const notificationSlice = createSlice({
     name: "notification",
     initialState,
