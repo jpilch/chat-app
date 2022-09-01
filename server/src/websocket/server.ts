@@ -11,6 +11,10 @@ export async function attachSocketIoServer(httpServer: http.Server) {
 
     io.on("connection", (socket: Socket) => {
         console.log("User has connected", socket.id);
+
+        socket.on("disconnect", () => {
+            console.log("User has disconnected");
+        });
     });
 }
 

@@ -14,7 +14,7 @@ export const store = configureStore({
         quickChat: quickChatSlice,
         authForm: authFormSlice,
         auth: authSlice,
-        notification: notificationSlice
+        notification: notificationSlice,
     }
 });
 
