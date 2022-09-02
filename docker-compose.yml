@@ -1,6 +1,24 @@
 version: '3.8'
 
 services:
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server/src:/usr/app/src
+    env_file:
+      - ./server/.env
+  qc_server:
+    build: ./qc-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./qc-server/src:/usr/app/src
+    env_file:
+      - ./qc-server/.env
+    depends_on:
+      - comms_db
   comms_db:
     image: postgres
     environment:
