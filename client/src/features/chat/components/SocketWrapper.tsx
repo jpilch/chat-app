@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useAuthStatus } from "../../auth/hooks";
-import { ChatSocket } from "../socket";
+import { useChatService } from "../hooks";
 
 function SocketWrapper() {
-    const isAuthenticated = useAuthStatus();
+
+    const chatService = useChatService();
 
     useEffect(() => {
-        if (isAuthenticated) ChatSocket.getInstance();
-        return () => ChatSocket.getInstance().disconnect();
+        chatService.connect();
+        return () => chatService.disconnect();
     }, [])
 
     return (
