@@ -9,6 +9,8 @@ services:
       - ./server/src:/usr/app/src
     env_file:
       - ./server/.env
+    depends_on:
+      - db
   qc_server:
     build: ./qc-server
     ports:
@@ -17,9 +19,7 @@ services:
       - ./qc-server/src:/usr/app/src
     env_file:
       - ./qc-server/.env
-    depends_on:
-      - comms_db
-  comms_db:
+  db:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=admin
@@ -28,7 +28,7 @@ services:
       - "5432:5432"
     volumes:
       - comms-db-data:/var/lib/postgresql/data
-  comms_db_admin:
+  db_admin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
@@ -38,6 +38,8 @@ services:
       - "8080:8080"
     volumes:
       - comms-db-admin:/var/lib/pgadmin
+    depends_on:
+      - db
 
 volumes:
   comms-db-data:
