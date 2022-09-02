@@ -6,3 +6,7 @@ export function localStorageGet(key: string): unknown | null {
 export function localStorageSet(key: string, value: unknown): void {
     localStorage.setItem(key, JSON.stringify(value))
 }
+
+export function localStorageRemove(key: string) {
+    localStorage.removeItem(key);
+}

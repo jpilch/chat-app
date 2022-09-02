@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../../common/components/Loader';
-import { localStorageGet } from '../../common/utils';
+import { localStorageGet, localStorageRemove } from '../../common/utils';
 import { loginFailedNotification, loginRequiredNotification, loginSuccessfulNotification } from '../../notification/state';
 import { useAuthStatus } from '../hooks';
 import { AuthState, selectAuthStatus, setAuthState } from '../state/authSlice';
 import jwtDecode from 'jwt-decode';
 import { RequestStatus } from '../../common/types';
+import { USER_AUTH_DATA } from '../../common/config';
 
 function AuthWrapper({ children }: { children: JSX.Element | Array<JSX.Element> }) {
 
@@ -23,21 +24,16 @@ function AuthWrapper({ children }: { children: JSX.Element | Array<JSX.Element> 
                 /* credentials are not set in state, try to retreive them from local storage */
                 if (!isAuthenticated) {
                     try {
-                        const { token } = localStorageGet(
-                            import.meta.env.VITE_USER_AUTH_DATA
-                        ) as Partial<AuthState>;
+                        const { token } = localStorageGet(USER_AUTH_DATA) as Partial<AuthState>;
                         const { username } = jwtDecode(token!) as Partial<AuthState>;
                         if (!username) throw new Error();
                         dispatch(setAuthState({ username, token }));
                         dispatch(loginSuccessfulNotification());
-                        navigate("/chat");
                     } catch (error) {
-                        if (loginReqestStatus === RequestStatus.idle) {
-                            dispatch(loginRequiredNotification());
-                        }
-                        else {
-                            dispatch(loginFailedNotification());
-                        }
+                        localStorageRemove(USER_AUTH_DATA);
+                        loginReqestStatus === RequestStatus.idle
+                            ? dispatch(loginRequiredNotification())
+                            : dispatch(loginFailedNotification());
                         navigate("/");
                     }
                 }

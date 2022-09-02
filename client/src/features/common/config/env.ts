@@ -1,0 +1,1 @@
+export const USER_AUTH_DATA = import.meta.env.VITE_USER_AUTH_DATA;
