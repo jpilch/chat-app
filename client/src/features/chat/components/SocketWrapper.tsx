@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useChatService } from "../hooks";
 
-function SocketWrapper() {
+function SocketWrapper({ children }: { children: JSX.Element }) {
 
     const chatService = useChatService();
 
@@ -10,9 +10,7 @@ function SocketWrapper() {
         return () => chatService.disconnect();
     }, [])
 
-    return (
-        <div>SocketWrapper</div>
-    )
+    return <>{children}</>
 }
 
 export default SocketWrapper
