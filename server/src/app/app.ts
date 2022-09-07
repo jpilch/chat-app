@@ -3,6 +3,8 @@ import "express-async-errors";
 import cors from "cors";
 
 import { authController } from "../auth/controllers";
+import { contactsController } from "../contacts/controllers";
+import { usersController } from "../users/controllers";
 import { errorHandlerMiddleware } from "../common/middlewares";
 
 export const app = express();
@@ -15,5 +17,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/auth", authController);
+app.use("/users", usersController);
+app.use("/contacts", contactsController)
 
 app.use(errorHandlerMiddleware);
