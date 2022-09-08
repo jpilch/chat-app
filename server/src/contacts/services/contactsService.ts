@@ -24,4 +24,4 @@ async function create(ids: Contact) {
     return contacts;
 }
 
-export default { findAll, create }
+export const contactsService = { findAll, create }

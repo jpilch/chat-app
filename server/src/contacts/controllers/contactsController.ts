@@ -1,5 +1,5 @@
 import express from "express";
-import contactsService from "../services/contactsService";
+import { contactsService } from "../services/contactsService";
 import { parseContactIds } from "../parsers/parseUserIds";
 
 export const contactsController = express.Router()

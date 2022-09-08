@@ -5,7 +5,7 @@ type UserIds = { firstId: number, secondId: number };
 
 export function parseId(id: unknown): number {
     if (!id || !isNumber(id)) {
-        throw new ParsingError("Incorrect of missing id");
+        throw new ParsingError("Incorrect or missing id");
     }
     return id;
 }

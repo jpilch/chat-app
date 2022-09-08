@@ -3,7 +3,3 @@ export type Contact = {
     secondId: number
 }
 
-export type ContactIdDb = {
-    userId: number,
-    contactId: number
-}
