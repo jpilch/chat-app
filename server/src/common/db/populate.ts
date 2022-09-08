@@ -1,18 +1,11 @@
 import users from "./_data/user.json";
+import messageContents from "./_data/message.json";
 import { authService } from "../../auth/services";
-import { PrismaClient } from "@prisma/client";
 import { contactService } from "../../contact/services/contactService";
 import { Contact, ContactIdDb } from "../../contact/types";
 import { conversationService } from "../../conversation/services";
-
-const prisma = new PrismaClient();
-
-async function clearAll() {
-    await prisma.user.deleteMany();
-    await prisma.userContacts.deleteMany();
-    await prisma.conversation.deleteMany();
-    await prisma.message.deleteMany();
-}
+import { Message } from "../../message/types";
+import { messageService } from "../../message/services";
 
 function makeUsers() {
     const promiseArray = users.map(user => authService.register(user));
@@ -29,10 +22,12 @@ function makeConversations(contacts: Array<ContactIdDb>) {
     return Promise.all(promiseArray);
 }
 
-// function makeMessages()
+function makeMessages(messages: Message[]) {
+    const promiseArray = messages.map(message => messageService.create(message));
+    return Promise.all(promiseArray);
+}
 
 export async function populate() {
-    await clearAll();
     const users = await makeUsers();
     await makeContacts([
         { firstId: users[0].id, secondId: users[1].id },
@@ -41,9 +36,17 @@ export async function populate() {
     const contacts = await contactService.findAll();
     await makeConversations([contacts[0], contacts[3]]);
     const conversations = await conversationService.findAll();
+    const mockMessages: Message[] = messageContents.map(({ content }, index) => ({
+        authorId: users[index].id,
+        conversationId: conversations[index % 2].id,
+        content,
+    }));
+    await makeMessages(mockMessages);
+    const messages = await messageService.findAll();
     console.log({ users });
     console.log({ contacts });
     console.log({ conversations });
+    console.log({ messages });
 }
 
 populate();
