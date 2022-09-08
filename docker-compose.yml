@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  server:
-    build: ./server
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./server/src:/usr/app/src
-    env_file:
-      - ./server/.env
-    depends_on:
-      - db
+  # server:
+  #   build: ./server
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./server:/usr/app/server
+  #   env_file:
+  #     - ./server/.env
+  #   depends_on:
+  #     - db
   qc_server:
     build: ./qc-server
     ports:

@@ -1,0 +1,5 @@
+.window__info {
+    width: 100%;
+    flex: 0.05;
+    border-left: var(--light-border);
+}

@@ -1,0 +1,10 @@
+.chat {
+    background-color: #fff;
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+        "controls window"
+        "contacts window";
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 1fr 9fr;
+}

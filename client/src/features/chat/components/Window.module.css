@@ -1,0 +1,8 @@
+.chat__window {
+    height: 100%;
+    grid-area: window;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
