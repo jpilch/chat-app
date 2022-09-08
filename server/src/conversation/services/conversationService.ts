@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ContactIdDb } from "../../contacts/types";
+import { ContactIdDb } from "../../contact/types";
 import { getConversationHash } from "../utils";
 
 const prisma = new PrismaClient();

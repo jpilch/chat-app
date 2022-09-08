@@ -7,6 +7,6 @@ export async function findAll(): Promise<UserInDb[]> {
     return prisma.user.findMany();
 }
 
-export default {
+export const userService = {
     findAll
 }
