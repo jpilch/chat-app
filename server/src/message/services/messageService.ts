@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import { Message } from "../types";
+import { Message, MessageInDb } from "../types";
 
 const prisma = new PrismaClient();
 
-function findAll() {
+async function findAll(): Promise<MessageInDb[]> {
     return prisma.message.findMany();
 }
 
-function create({ content, authorId, conversationId }: Message) {
+async function create({ content, authorId, conversationId }: Message): Promise<MessageInDb> {
     return prisma.message.create({
         data: { content, authorId, conversationId }
     });

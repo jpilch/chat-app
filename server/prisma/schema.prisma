@@ -8,11 +8,13 @@ datasource db {
 }
 
 model User {
-    id           Int       @id @default(autoincrement())
+    id           Int            @id @default(autoincrement())
     email        String
-    username     String    @unique
+    username     String         @unique
     passwordHash String
-    message      Message[]
+    messages     Message[]
+    user         UserContacts[] @relation("contact")
+    contact      UserContacts[] @relation("user")
 }
 
 model Message {
@@ -26,13 +28,15 @@ model Message {
 }
 
 model UserContacts {
-    id        Int @id @default(autoincrement())
+    id        Int  @id @default(autoincrement())
     userId    Int
     contactId Int
+    user      User @relation("user", fields: [userId], references: [id])
+    contact   User @relation("contact", fields: [contactId], references: [id])
 }
 
 model Conversation {
     id          Int       @id @default(autoincrement())
     membersHash String    @unique
-    Message     Message[]
+    messages    Message[]
 }

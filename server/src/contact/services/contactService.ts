@@ -24,4 +24,27 @@ async function create(ids: Contact) {
     return contacts;
 }
 
-export const contactService = { findAll, create }
+async function findAllFrom(userId: number) {
+    return await prisma.userContacts.findMany({
+        where: {
+            userId,
+        },
+        select: {
+            id: true,
+            user: {
+                select: {
+                    username: true,
+                    id: true
+                }
+            },
+            contact: {
+                select: {
+                    username: true,
+                    id: true
+                }
+            },
+        },
+    });
+}
+
+export const contactService = { findAll, create, findAllFrom }
