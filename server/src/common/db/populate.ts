@@ -3,7 +3,7 @@ import messageContents from "./_data/message.json";
 import { authService } from "../../auth/services";
 import { contactService } from "../../contact/services/contactService";
 import { Contact, ContactIdDb } from "../../contact/types";
-import { conversationService } from "../../conversation/services";
+import { conversationService, create } from "../../conversation/services";
 import { Message } from "../../message/types";
 import { messageService } from "../../message/services";
 
@@ -23,7 +23,11 @@ function makeConversations(contacts: Array<ContactIdDb>) {
 }
 
 function makeMessages(messages: Message[]) {
-    const promiseArray = messages.map(message => messageService.create(message));
+    /* simulate 1 sec timeouts between messages */
+    const promiseArray = messages.map((message, index) => new Promise(resolve => setTimeout(async () => {
+        const created = await messageService.create(message);
+        resolve(created);
+    }, (index + 1) * 1000)));
     return Promise.all(promiseArray);
 }
 
