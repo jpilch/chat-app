@@ -3,7 +3,7 @@ import messageContents from "./_data/message.json";
 import { authService } from "../../auth/services";
 import { contactService } from "../../contact/services/contactService";
 import { Contact, ContactIdDb } from "../../contact/types";
-import { conversationService, create } from "../../conversation/services";
+import { conversationService } from "../../conversation/services";
 import { Message } from "../../message/types";
 import { messageService } from "../../message/services";
 
@@ -30,19 +30,17 @@ function makeMessages(messages: Message[]) {
     }, (index + 1) * 1000)));
     return Promise.all(promiseArray);
 }
-
 export async function populate() {
     const users = await makeUsers();
     await makeContacts([
         { firstId: users[0].id, secondId: users[1].id },
-        { firstId: users[0].id, secondId: users[2].id },
     ]);
     const contacts = await contactService.findAll();
-    await makeConversations([contacts[0], contacts[3]]);
+    await makeConversations([contacts[0]]);
     const conversations = await conversationService.findAll();
     const mockMessages: Message[] = messageContents.map(({ content }, index) => ({
-        authorId: users[index].id,
-        conversationId: conversations[index % 2].id,
+        authorId: users[index % 2].id,
+        conversationId: conversations[0].id,
         content,
     }));
     await makeMessages(mockMessages);
