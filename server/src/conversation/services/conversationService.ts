@@ -25,7 +25,7 @@ export async function findAllFrom(
     relationships: Array<ContactIncludingUsers>
 ): Promise<ContactConversation[]> {
     const res: Array<ContactConversation> = [];
-    for (let relation of relationships) {
+    for (const relation of relationships) {
         const contactConversation: ContactConversation = { relation, conversation: null };
         contactConversation.conversation = await prisma.conversation.findUnique({
             where: {
@@ -50,4 +50,4 @@ export const conversationService = {
     findAll,
     create,
     findAllFrom
-}
+};

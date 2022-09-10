@@ -35,4 +35,4 @@ async function login(credentials: LoginCredentials): Promise<string> {
 export const authService: IAuthService = {
     register,
     login
-}
+};

@@ -1,2 +1,2 @@
-export * from './userParser';
+export * from "./userParser";
 export * from "./loginCredentialsParser";

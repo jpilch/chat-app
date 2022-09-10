@@ -8,7 +8,7 @@ import { authenticatorMiddleware } from "../middlewares";
 export const authController = express.Router();
 
 authController.get("/", authenticatorMiddleware, (req, res) => {
-    console.log(req.user)
+    console.log(req.user);
     return res
         .setHeader("Content-Type", "application/json")
         .send("dummy endpoint");
@@ -24,6 +24,6 @@ authController.post("/login", async (req, res) => {
     const credentials = parseLoginCredentials(req.body);
     const token = await authService.login(credentials);
     return res.json({ token });
-})
+});
 
 export default authController;

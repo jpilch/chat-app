@@ -1,4 +1,4 @@
-import { UserInDb } from "../../auth/types"
+import { UserInDb } from "../../auth/types";
 
 export type ContactIncludingUsers = {
     id: number,

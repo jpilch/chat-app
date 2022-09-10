@@ -17,5 +17,5 @@ export function parseMessage({ content, authorId, conversationId }: MessageField
         content: parseMessageContent(content),
         authorId: parseId(authorId),
         conversationId: parseId(conversationId),
-    }
+    };
 }

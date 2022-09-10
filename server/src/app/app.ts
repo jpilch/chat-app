@@ -20,8 +20,8 @@ app.get("/", (_req, res) => {
 
 app.use("/auth", authController);
 app.use("/users", userController);
-app.use("/contacts", contactController)
-app.use("/conversations", conversationController)
+app.use("/contacts", contactController);
+app.use("/conversations", conversationController);
 app.use("/messages", messageController);
 
 app.use(errorHandlerMiddleware);

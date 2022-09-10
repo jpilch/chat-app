@@ -31,7 +31,7 @@ export function parseUser({ email, username, password }: UserFields): User {
         email: parseEmail(email),
         username: parseUsername(username),
         password: parsePassword(password)
-    }
+    };
 }
 
 export default parseUser;

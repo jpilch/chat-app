@@ -8,4 +8,4 @@ export function parseLoginCredentials({ username, password }: LoginCredentialFie
         username: parseUsername(username),
         password: parsePassword(password)
     };
-};
+}

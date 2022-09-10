@@ -1,1 +1,1 @@
-export * from './parseMessage';
+export * from "./parseMessage";

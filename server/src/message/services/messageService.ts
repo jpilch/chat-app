@@ -16,4 +16,4 @@ async function create({ content, authorId, conversationId }: Message): Promise<M
 export const messageService = {
     findAll,
     create
-}
+};

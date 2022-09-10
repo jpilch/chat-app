@@ -13,8 +13,8 @@ async function create(ids: Contact) {
         where: { id: { in: [firstId, secondId] } },
     });
     if (users.length !== 2 || firstId === secondId) {
-        throw new Error("Incorrect input data")
-    };
+        throw new Error("Incorrect input data");
+    }
     const contacts = await prisma.userContacts.createMany({
         data: [
             { userId: firstId, contactId: secondId },
@@ -47,4 +47,4 @@ async function findAllFrom(userId: number) {
     });
 }
 
-export const contactService = { findAll, create, findAllFrom }
+export const contactService = { findAll, create, findAllFrom };
