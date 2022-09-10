@@ -1,9 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { UserInDb } from "../../auth/types";
 import { ContactIdDb } from "../../contact/types";
 import { ContactIncludingUsers } from "../../contact/types/contactIncludingUsers";
-import { conversationController } from "../controllers";
-import { ContactConversation, Conversation } from "../types";
+import { ContactConversation } from "../types";
 import { getConversationHash } from "../utils";
 
 const prisma = new PrismaClient();
@@ -30,16 +28,22 @@ export async function findAllFrom(
         contactConversation.conversation = await prisma.conversation.findUnique({
             where: {
                 membersHash: getConversationHash({ userId: relation.user.id, contactId: relation.contact.id }),
-            }, include: {
+            },
+            select: {
+                id: true,
+                membersHash: true,
                 messages: {
                     select: {
                         id: true,
                         content: true,
                         authorId: true,
                         sentAt: true
-                    }
-                }
-            }
+                    },
+                    orderBy: {
+                        sentAt: "desc",
+                    },
+                },
+            },
         });
         res.push(contactConversation);
     }
