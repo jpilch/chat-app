@@ -13,7 +13,28 @@ async function create({ content, authorId, conversationId }: Message): Promise<M
     });
 }
 
+async function findLastOfConversation(conversationId: number): Promise<MessageInDb | null> {
+    const conversation = await prisma.conversation.findUnique({
+        where: { id: conversationId }
+    });
+    if (!conversation) throw new Error("Conversation does not exist");
+    const lastMessage = await prisma.message.findFirst({
+        where: { conversationId },
+        select: {
+            content: true,
+            authorId: true,
+            sentAt: true,
+            conversationId: true
+        },
+        orderBy: {
+            sentAt: "desc"
+        },
+    });
+    return lastMessage;
+}
+
 export const messageService = {
     findAll,
-    create
+    create,
+    findLastOfConversation
 };

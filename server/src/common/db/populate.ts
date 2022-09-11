@@ -24,12 +24,17 @@ function makeConversations(contacts: Array<ContactIdDb>) {
 
 function makeMessages(messages: Message[]) {
     /* simulate 1 sec timeouts between messages */
-    const promiseArray = messages.map((message, index) => new Promise(resolve => setTimeout(async () => {
-        const created = await messageService.create(message);
-        resolve(created);
-    }, (index + 1) * 1000)));
+    const promiseArray = messages.map((message, index) => (
+        new Promise(resolve => (
+            setTimeout(async () => {
+                const created = await messageService.create(message);
+                resolve(created);
+            }, (index + 1) * 1000)
+        ))
+    ));
     return Promise.all(promiseArray);
 }
+
 export async function populate() {
     const users = await makeUsers();
     await makeContacts([

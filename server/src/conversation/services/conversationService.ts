@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { ContactIdDb } from "../../contact/types";
 import { ContactIncludingUsers } from "../../contact/types/contactIncludingUsers";
+import { messageService } from "../../message/services";
 import { ContactConversation } from "../types";
 import { getConversationHash } from "../utils";
 
@@ -32,19 +33,10 @@ export async function findAllFrom(
             select: {
                 id: true,
                 membersHash: true,
-                messages: {
-                    select: {
-                        id: true,
-                        content: true,
-                        authorId: true,
-                        sentAt: true
-                    },
-                    orderBy: {
-                        sentAt: "desc",
-                    },
-                },
             },
         });
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+        contactConversation.conversation!.lastMessage = await messageService.findLastOfConversation(contactConversation.conversation!.id);
         res.push(contactConversation);
     }
     return res;
