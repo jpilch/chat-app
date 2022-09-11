@@ -1,4 +1,4 @@
-export * from './Contacts';
+export * from './Conversations';
 export * from './Controls';
 export * from './Form';
 export * from './Info';

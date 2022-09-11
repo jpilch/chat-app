@@ -11,7 +11,6 @@ function Loader() {
                 color="var(--text-color-primary)"
                 visible={true}
                 ariaLabel='oval-loading'
-                secondaryColor="#4fa94d"
                 strokeWidth={4}
                 strokeWidthSecondary={2}
             />

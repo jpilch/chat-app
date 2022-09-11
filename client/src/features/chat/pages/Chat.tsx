@@ -5,7 +5,7 @@ import SocketWrapper from '../components/SocketWrapper';
 
 import {
     Window,
-    Contacts,
+    Conversations,
     Controls
 } from '../components';
 
@@ -15,7 +15,7 @@ function Chat() {
             <SocketWrapper>
                 <main className={styles.chat}>
                     <Controls />
-                    <Contacts />
+                    <Conversations />
                     <Window />
                 </main>
             </SocketWrapper>

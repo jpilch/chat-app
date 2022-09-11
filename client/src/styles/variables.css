@@ -2,10 +2,10 @@
     --bg-color-primary: #fafafa;
     --bg-color-secondary: #fff;
 
-    --text-color-primary: rgb(72, 75, 106);
-    --text-color-primary-hover: rgb(62, 65, 96);
-    --text-color-highlight: rgb(196, 199, 223);
-    --text-color-highlight-hover: rgb(186, 189, 213);
+    --text-color-primary: rgb(69, 123, 157);
+    --text-color-primary-hover: rgb(59, 113, 147);
+    --text-color-highlight: rgb(168, 218, 220);
+    --text-color-highlight-hover: rgb(168, 208, 210);
     --light-box-shadow: 0 2px 10px #ddd;
     --light-border: 1px solid rgba(221, 221, 221, 0.7);
 
