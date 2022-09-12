@@ -1,21 +1,24 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { instance } from "../../common/axios";
+import { RequestStatus } from "../../common/types";
+import { UserConversation } from "../types";
 
 type ConversationState = {
-    conversations: []
+    conversations: UserConversation[],
+    status: RequestStatus
 }
 
 const initialState: ConversationState = {
-    conversations: []
+    conversations: [],
+    status: RequestStatus.idle
 }
 
-export const fetchUserConversations = createAsyncThunk<any, null, { state: RootState }>(
+export const fetchUserConversations = createAsyncThunk<UserConversation[], null, { state: RootState }>(
     "conversations/fetchUserConversations",
     async (_, { getState }) => {
         const { token } = getState().auth;
-        console.log({ token })
-        const response = await instance.get("/users/me/conversations", {
+        const response = await instance.get<UserConversation[]>("/users/me/conversations", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -29,7 +32,21 @@ export const conversationSlice = createSlice({
     initialState,
     reducers: {
 
+    },
+    extraReducers(builder) {
+        builder
+            .addCase(fetchUserConversations.pending, (state, _action) => {
+                state.status = RequestStatus.pending;
+            })
+            .addCase(fetchUserConversations.fulfilled, (state, action: PayloadAction<UserConversation[]>) => {
+                state.conversations = action.payload;
+                state.status = RequestStatus.fullfilled;
+            })
     }
 })
+
+export const selectConversations = (state: RootState) => state.conversations.conversations;
+
+export const selectConversationsStatus = (state: RootState) => state.conversations.status;
 
 export default conversationSlice.reducer;

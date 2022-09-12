@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import authFormSlice from "../auth/state/authFormSlice";
 import authSlice from "../auth/state/authSlice";
+import conversationSlice from "../chat/state/conversationSlice";
 import notificationSlice from "../notification/state/notificationSlice";
 
 /* quick chat state */
@@ -15,6 +16,7 @@ export const store = configureStore({
         authForm: authFormSlice,
         auth: authSlice,
         notification: notificationSlice,
+        conversations: conversationSlice
     }
 });
 

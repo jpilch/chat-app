@@ -9,6 +9,7 @@ function Loader() {
                 height={80}
                 width={80}
                 color="var(--text-color-primary)"
+                secondaryColor="var(--text-color-secondary)"
                 visible={true}
                 ariaLabel='oval-loading'
                 strokeWidth={4}
