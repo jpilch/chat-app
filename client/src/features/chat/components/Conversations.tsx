@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import ComponentLoadingFallback from "../../common/components/ComponentLoadingFallback";
 import { RequestStatus } from "../../common/types";
 import { fetchUserConversations, selectConversations, selectConversationsStatus } from "../state/conversationSlice";
+import Conversation from "./Conversation";
 import styles from "./Conversations.module.css";
 
 export function Conversations() {
@@ -19,9 +20,7 @@ export function Conversations() {
     }, []);
 
     if (conversationsStatus === RequestStatus.pending) {
-        return (
-            <ComponentLoadingFallback />
-        )
+        return <></>
     }
 
     if (conversationsStatus === RequestStatus.rejected) {
@@ -33,9 +32,7 @@ export function Conversations() {
     return (
         <section className={styles.chat__conversations}>
             {conversations.map(conversation => {
-                return (
-                    <p>{conversation.relation.contact.username}</p>
-                )
+                return <Conversation conversation={conversation} />
             })}
         </section>
     )
